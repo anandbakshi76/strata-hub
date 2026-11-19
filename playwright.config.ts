@@ -5,6 +5,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "e2e",
   reporter: "list",
+  workers: 1,
   timeout: 60_000,
   use: { baseURL: "http://localhost:4173", channel: "chrome" },
   webServer: {

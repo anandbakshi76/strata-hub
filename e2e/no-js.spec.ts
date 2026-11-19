@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { content } from "../web/content";
 
 // Rule 2: the content never depends on 3D or JavaScript.
 test.use({ javaScriptEnabled: false });
@@ -9,13 +10,19 @@ test("with JavaScript off, every heading, story, spec, price and FAQ question is
   await page.setViewportSize({ width: 375, height: 900 });
   await page.goto("/");
   const body = page.locator("body");
-  for (const name of ["Lights", "Climate", "Security", "Energy"]) {
-    await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
+  for (const m of content.modules) {
+    await expect(page.getByRole("heading", { name: m.name, exact: true })).toBeVisible();
+    await expect(body).toContainText(m.story);
+    for (const s of m.specs) {
+      await expect(body).toContainText(s.label);
+      await expect(body).toContainText(s.value);
+    }
   }
-  for (const price of ["$199", "$349", "$499"]) await expect(body).toContainText(price);
-  await expect(page.locator("#faq summary")).toHaveCount(6);
-  await expect(body).toContainText("Strata is a fictional product");
-  await expect(page.getByText("Turn on JavaScript to register interest.")).toBeVisible();
+  for (const b of content.bundles) await expect(body).toContainText(b.price);
+  await expect(page.locator("#faq summary")).toHaveCount(content.faq.length);
+  for (const q of content.faq) await expect(body).toContainText(q.question);
+  await expect(body).toContainText(content.footer);
+  await expect(page.getByText(content.register.noScript)).toBeVisible();
 });
 
 test.describe("with JavaScript on", () => {
@@ -23,6 +30,6 @@ test.describe("with JavaScript on", () => {
   test("the JavaScript-off notice is removed", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator("#app")).toHaveAttribute("data-ready", "true");
-    await expect(page.getByText("Turn on JavaScript to register interest.")).toHaveCount(0);
+    await expect(page.getByText(content.register.noScript)).toHaveCount(0);
   });
 });

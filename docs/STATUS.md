@@ -1,6 +1,6 @@
 # Status
 
-Phase 1 (structure and content) is built on `phase-1-sitemap-content-structure`, 19 November 2026. The page has every section in the SPEC 5 order with its draft copy, readable with JavaScript off. It is not styled yet (phase 2a), and has no 3D or motion (phase 2b).
+Phase 1 (structure and content) is built on `phase-1-sitemap-content-structure`, 19 November 2026. The page has every section in the SPEC 5 order with its approved copy, readable with JavaScript off. It is not styled yet (phase 2a), and has no 3D or motion (phase 2b).
 
 - `web/index.html`: header, hero, look inside with the four module chapters, reassemble line, bundles, register-interest form (fields only, no behaviour yet), FAQ, footer.
 - `web/content.ts`: all copy, typed; `docs/CONTENT.md` lists it for approval. Approved by Anand Bakshi on 19 November 2026.

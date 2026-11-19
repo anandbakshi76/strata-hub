@@ -111,7 +111,23 @@ describe("content matches content.ts", async () => {
   it("is approved by the person, in content.ts and CONTENT.md (rule 7)", () => {
     expect(content.status).toBe("approved");
     const doc = readFileSync(new URL("../docs/CONTENT.md", import.meta.url), "utf8");
-    expect(doc).toMatch(/^Status: Approved by .+ on .+./m);
+    expect(doc).toMatch(/^Status: Approved by .+ on .+\./m);
+    // The page must show only the words the person approved: every string is still in CONTENT.md.
+    const strings = [
+      content.hero.headline,
+      content.hero.lede,
+      content.reassemble,
+      content.privacy,
+      content.footer,
+      ...content.modules.flatMap((m) => [
+        m.name,
+        m.story,
+        ...m.specs.flatMap((s) => [s.label, s.value]),
+      ]),
+      ...content.bundles.map((b) => b.price),
+      ...content.faq.flatMap((q) => [q.question, q.answer]),
+    ];
+    for (const s of strings) expect(doc).toContain(s);
   });
 });
 
