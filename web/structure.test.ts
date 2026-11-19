@@ -82,6 +82,10 @@ describe("content matches content.ts", async () => {
       const card = cards[i]?.textContent ?? "";
       expect(card).toContain(b.name);
       expect(card).toContain(b.price);
+      for (const m of content.modules) {
+        const state = b.includes.includes(m.id) ? "included" : "not included";
+        expect(card).toContain(`${m.name}: ${state}`);
+      }
     });
   });
 

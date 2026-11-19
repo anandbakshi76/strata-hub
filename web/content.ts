@@ -83,7 +83,7 @@ export const content = {
     { name: "Starter", price: "$199", includes: ["lights"] },
     { name: "Home", price: "$349", includes: ["lights", "climate", "security"] },
     { name: "Complete", price: "$499", includes: ["lights", "climate", "security", "energy"] },
-  ] satisfies Bundle[],
+  ] satisfies Bundle[] as Bundle[],
   register: {
     title: "Hear when Strata launches",
     intro: "One email at launch. Nothing else.",

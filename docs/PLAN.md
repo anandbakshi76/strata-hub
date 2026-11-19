@@ -26,7 +26,7 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 3. `web/index.html`: semantic HTML for the header, hero, look-inside, four module chapters, reassemble line, bundles, register-interest form (fields and labels only, no behaviour), FAQ (`<details>`), footer. The content is in the HTML itself, so it reads with JavaScript off.
 4. `docs/CONTENT.md`: the same copy as a readable list for the person to approve.
 
-**Files:** `web/index.html`, `web/content.ts`, `web/structure.test.ts`, `e2e/no-js.spec.ts`, `docs/CONTENT.md`, `docs/STATUS.md`, `docs/log/`.
+**Files:** `web/index.html`, `web/content.ts`, `web/structure.test.ts`, `e2e/no-js.spec.ts`, `docs/CONTENT.md`, `docs/STATUS.md`, `docs/log/`. Added while building (see the phase 1 note): `web/main.ts` (removes the JavaScript-off notice), `web/styles/base.css` (skip link), `playwright.config.ts` (tests the production build), `e2e/smoke.spec.ts` (new heading), `docs/PROCESS.md` (check line, plan choice 8), `README.md`.
 
 **Could break:** the foundation smoke test expects the heading "Strata Hub: foundation"; it is updated to the real `h1` in the same commit.
 
