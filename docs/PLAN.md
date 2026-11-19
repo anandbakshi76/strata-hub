@@ -34,7 +34,7 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 
 - [x] The structure test passes: sections in the SPEC 5 order, one `h1`, no skipped heading levels.
 - [x] With JavaScript disabled, Playwright finds every module name, story, spec, bundle price and FAQ question (rule 2).
-- [ ] `docs/CONTENT.md` lists all copy, and the person has approved it or marked changes (prices and claims need approval, rule 7). (CONTENT.md written; waiting for the person.)
+- [x] `docs/CONTENT.md` lists all copy, and the person has approved it or marked changes (prices and claims need approval, rule 7). (Approved by Anand Bakshi on 19 November 2026.)
 - [x] The form has the three fields from SPEC 6, each with a visible label, and no other fields (rule 3).
 - [x] The footer says Strata is a fictional product.
 - [x] `npm run check` passes.

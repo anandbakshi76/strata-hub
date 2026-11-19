@@ -104,8 +104,10 @@ describe("content matches content.ts", async () => {
     expect(doc.querySelector("footer")?.textContent).toContain(content.footer);
   });
 
-  it("marks all copy as draft until the person approves it", () => {
-    expect(content.status).toBe("draft");
+  it("is approved by the person, in content.ts and CONTENT.md (rule 7)", () => {
+    expect(content.status).toBe("approved");
+    const doc = readFileSync(new URL("../docs/CONTENT.md", import.meta.url), "utf8");
+    expect(doc).toMatch(/^Status: Approved by .+ on .+./m);
   });
 });
 

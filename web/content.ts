@@ -26,7 +26,7 @@ export interface Question {
 }
 
 export const content = {
-  status: "draft" as "draft" | "approved",
+  status: "approved" as "draft" | "approved",
   hero: {
     headline: "One hub. Every room.",
     lede: "Strata is a smart home hub built from modules that snap together. Start with light. Add climate, security and energy when you're ready.",

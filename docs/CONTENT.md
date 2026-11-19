@@ -1,6 +1,6 @@
 # Content for approval
 
-Status: Draft. All copy on the page, from `web/content.ts` (the page shows the same words). Strata is fictional: prices and product claims change only with your approval (SPEC rule 7).
+Status: Approved by Anand Bakshi on 19 November 2026. All copy on the page, from `web/content.ts` (the page shows the same words). Strata is fictional: prices and product claims change only with your approval (SPEC rule 7).
 
 To approve: reply with "content approved", or list the changes. Then `status` in `web/content.ts` becomes "approved".
 
