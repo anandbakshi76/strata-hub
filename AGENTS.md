@@ -15,7 +15,7 @@ IMPORTANT: before you plan, build or change anything, or answer questions about 
 3. `docs/TECH_STACK.md`: the tech choices
 4. `docs/CODE_STANDARDS.md`: how to write the code
 5. `docs/PROCESS.md`: how to plan, build and check the work
-6. `docs/BRAND.md`: the look
+6. `docs/BRAND.md` and `DESIGN.md`: the look (DESIGN.md is the full design system and wins)
 7. `docs/STATUS.md`: what is built so far and how to run it
 8. `docs/RUNBOOK.md`: how it runs once it's live, and how to investigate a problem
 9. `docs/OBSERVABILITY.md`: what the app records about what happened and why: traces, decision records, budgets
@@ -60,7 +60,7 @@ If the guard blocks you, don't work around it: stop and tell the person.
 
 ## Skills
 
-Use the skills in `.claude/skills/` when the work matches: `brand` for screens.
+Use the skills in `.claude/skills/` when the work matches: `brand` for screens (it applies `DESIGN.md`), `ui-ux-pro-max` for design and UX questions, and the `gsap-*` skills for motion. Build each screen static first; add motion only after Playwright passes on the static page. The Impeccable critique runs once before the evidence gate.
 
 ### What the guard did
 

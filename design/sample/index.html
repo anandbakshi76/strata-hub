@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata Hub: design sample</title>
+<!-- Design sample only. The real site self-hosts these fonts (spec rule 6). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=DM+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stone-50:#FAFAF9;--stone-100:#F5F5F4;--stone-200:#E7E5E4;--stone-300:#D6D3D1;--stone-400:#A8A29E;
+  --stone-600:#57534E;--stone-900:#1C1917;--signal:#C2410C;--signal-dark:#9A3412;--signal-glow:#FB923C;--error:#B91C1C;
+  --display:"Archivo",system-ui,sans-serif;--body:"DM Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;
+  --gutter:16px;--max:1200px;
+}
+@media (min-width:768px){:root{--gutter:24px}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--stone-50);color:var(--stone-900);font:400 17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+@media (min-width:768px){body{font-size:18px}}
+a{color:var(--signal);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.dark :focus-visible{outline-color:var(--signal-glow)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--stone-900);color:#fff;padding:8px 16px;border-radius:999px;z-index:10}
+.skip:focus{left:16px}
+
+/* Sample label */
+.sample-note{background:var(--stone-900);color:var(--stone-200);font:500 14px/1.45 var(--body);text-align:center;padding:8px var(--gutter)}
+
+/* Header */
+header{position:sticky;top:0;z-index:5;background:rgba(250,250,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--stone-300)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--space-4)}
+.logo{font:800 22px/1 var(--display);letter-spacing:-.03em;color:var(--stone-900);text-decoration:none}
+.nav{display:flex;align-items:center;gap:var(--space-5)}
+.nav a.link{color:var(--stone-900);text-decoration:none;font-weight:500}
+.nav a.link:hover{color:var(--signal)}
+.menu{display:none;font:500 16px var(--body);background:none;border:1px solid var(--stone-600);border-radius:999px;height:44px;padding:0 16px;color:var(--stone-900)}
+@media (max-width:767px){.nav a.link{display:none}.menu{display:inline-block}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:999px;background:var(--signal);color:#fff;font:500 16px var(--body);text-decoration:none;border:0;cursor:pointer;transition:background-color .18s}
+.btn:hover{background:var(--signal-dark)}
+.btn.sm{height:44px;padding:0 18px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--stone-900);border:1px solid var(--stone-900)}
+.btn.ghost:hover{background:var(--stone-900);color:#fff}
+
+/* Hero */
+.hero{min-height:calc(100svh - 100px);display:grid;align-items:center;padding:var(--space-7) 0}
+.hero .wrap{display:grid;gap:var(--space-6);align-items:center}
+@media (min-width:1024px){.hero .wrap{grid-template-columns:1.05fr 1fr}}
+h1{font:800 clamp(48px,9vw,112px)/.95 var(--display);letter-spacing:-.03em;margin:0}
+.lede{max-width:30rem;color:var(--stone-600);margin:var(--space-5) 0 var(--space-6)}
+.hero-art{position:relative;max-width:520px;width:100%;justify-self:center}
+.hero-art svg{width:100%;height:auto;display:block}
+.cue{margin-top:var(--space-5);font:500 14px var(--body);color:var(--stone-600)}
+
+/* Dark chapters */
+.dark{background:var(--stone-900);color:var(--stone-200)}
+.inside{padding:var(--space-9) 0}
+.inside .wrap{display:grid;gap:var(--space-7);align-items:center}
+@media (min-width:1024px){.inside .wrap{grid-template-columns:1fr 2fr}}
+h2{font:700 clamp(28px,4.5vw,48px)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 var(--space-4)}
+.chapter-no{font:500 15px var(--mono);color:var(--stone-400);margin:0 0 var(--space-3)}
+.story{max-width:34rem;color:var(--stone-200);margin:0 0 var(--space-6)}
+.specs{list-style:none;margin:0;padding:0;max-width:26rem}
+.specs li{display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) 0;border-top:1px solid rgba(231,229,228,.16)}
+.specs li:last-child{border-bottom:1px solid rgba(231,229,228,.16)}
+.specs span{color:var(--stone-400);font-size:15px}
+.specs b{font:500 15px var(--mono);color:var(--stone-200)}
+.inside-art svg{width:100%;height:auto;display:block}
+.callout-label{font:500 14px var(--body);fill:var(--stone-200)}
+.callout-spec{font:500 13px var(--mono);fill:var(--stone-400)}
+.callout-label.on{fill:#fff}
+.reassemble{text-align:center;padding:var(--space-8) var(--gutter);font:700 clamp(22px,3vw,32px)/1.25 var(--display);letter-spacing:-.02em;color:var(--stone-200);border-top:1px solid rgba(231,229,228,.16)}
+
+/* Bundles */
+section.light{padding:var(--space-9) 0}
+.intro{max-width:34rem;color:var(--stone-600);margin:0 0 var(--space-7)}
+.cards{display:grid;gap:var(--space-5)}
+@media (min-width:1024px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--stone-100);border-radius:16px;padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-4);border:2px solid transparent}
+.card.rec{border-color:var(--stone-900)}
+.card h3{font:700 24px/1.1 var(--display);letter-spacing:-.02em;margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tag{font:500 13px var(--body);background:var(--stone-900);color:#fff;border-radius:999px;padding:4px 10px;letter-spacing:0}
+.price{font:500 32px/1 var(--mono);margin:0}
+.price small{font:400 15px var(--body);color:var(--stone-600)}
+.incl{list-style:none;margin:0;padding:0;flex:1}
+.incl li{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--stone-300);font-size:16px}
+.incl li.no{color:var(--stone-600)}
+.incl svg{flex:none}
+
+/* Form */
+.form{max-width:32rem;background:var(--stone-100);border-radius:16px;padding:var(--space-6)}
+.field{margin-bottom:var(--space-5)}
+label{display:block;font-weight:500;margin-bottom:6px}
+.hint{font-size:14px;color:var(--stone-600);margin:0 0 6px}
+input[type=email],select{width:100%;height:48px;border:1px solid var(--stone-600);border-radius:8px;padding:0 14px;font:400 17px var(--body);background:#fff;color:var(--stone-900)}
+input[aria-invalid=true]{border:2px solid var(--error)}
+.err{display:flex;gap:6px;align-items:center;color:var(--error);font-size:15px;margin-top:6px}
+.check{display:flex;gap:12px;align-items:flex-start}
+.check input{width:24px;height:24px;margin:0;accent-color:var(--signal);flex:none}
+.check label{font-weight:400;margin:0}
+.privacy{font-size:14px;color:var(--stone-600);margin:var(--space-4) 0 0}
+
+/* FAQ */
+.faq{max-width:44rem}
+details{border-top:1px solid var(--stone-300)}
+details:last-child{border-bottom:1px solid var(--stone-300)}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);padding:var(--space-5) 0;font-weight:500;cursor:pointer;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary .pm{font:500 22px var(--mono);color:var(--signal);transition:transform .18s}
+details[open] summary .pm{transform:rotate(45deg)}
+details p{margin:0 0 var(--space-5);color:var(--stone-600);max-width:38rem}
+
+/* Tokens strip */
+.tokens{padding:var(--space-8) 0;border-top:1px solid var(--stone-300)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-3);margin:var(--space-5) 0 var(--space-7)}
+.sw{border-radius:12px;overflow:hidden;border:1px solid var(--stone-300);font-size:13px}
+.sw i{display:block;height:64px}
+.sw div{padding:8px 10px;background:#fff}
+.sw b{display:block;font:500 13px var(--mono)}
+.type-row{display:grid;gap:4px;padding:var(--space-4) 0;border-top:1px solid var(--stone-300)}
+.type-row small{font:500 13px var(--mono);color:var(--stone-600)}
+
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+footer{padding:var(--space-6) 0}
+footer .wrap{display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;font-size:14px;color:var(--stone-400)}
+footer a{color:var(--signal-glow)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sample-note">Design sample for review. Not the built site: no 3D or motion yet.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">Strata</a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="#modules">Modules</a>
+      <a class="link" href="#bundles">Bundles</a>
+      <a class="link" href="#faq">FAQ</a>
+      <button class="menu" type="button" aria-expanded="false">Menu</button>
+      <a class="btn sm" href="#register">Register interest</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Hero -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <h1 id="hero-title">One hub.<br>Every room.</h1>
+        <p class="lede">Strata is a smart home hub built from modules that snap together. Start with light. Add climate, security and energy when you're ready.</p>
+        <a class="btn" href="#register">Register interest</a>
+        <p class="cue">Scroll to look inside</p>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 520 420" role="img" aria-label="The Strata hub, assembled: a low square base with four module plates stacked on top.">
+          <ellipse cx="260" cy="350" rx="190" ry="34" fill="#1C1917" opacity=".08"/>
+          <g id="hub">
+            <!-- base -->
+            <polygon points="70,250 260,340 450,250 450,276 260,366 70,276" fill="#A8A29E"/>
+            <polygon points="70,250 260,160 450,250 260,340" fill="#E7E5E4"/>
+            <!-- energy -->
+            <polygon points="90,226 260,306 430,226 430,248 260,328 90,248" fill="#78716C"/>
+            <polygon points="90,226 260,146 430,226 260,306" fill="#D6D3D1"/>
+            <line x1="175" y1="266" x2="260" y2="306" stroke="#C2410C" stroke-width="3"/>
+            <!-- security -->
+            <polygon points="90,204 260,284 430,204 430,226 260,306 90,226" fill="#292524"/>
+            <polygon points="90,204 260,124 430,204 260,284" fill="#44403C"/>
+            <!-- climate -->
+            <polygon points="90,182 260,262 430,182 430,204 260,284 90,204" fill="#78716C"/>
+            <polygon points="90,182 260,102 430,182 260,262" fill="#A8A29E"/>
+            <!-- lights -->
+            <polygon points="90,160 260,240 430,160 430,182 260,262 90,182" fill="#D6D3D1"/>
+            <polygon points="90,160 260,80 430,160 260,240" fill="#F5F5F4"/>
+            <circle cx="260" cy="160" r="10" fill="#FAFAF9" stroke="#D6D3D1" stroke-width="2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Look inside: one dark chapter shown -->
+  <section class="dark inside" id="modules" aria-labelledby="ch2">
+    <div class="wrap">
+      <div>
+        <p class="chapter-no">02 / 04</p>
+        <h2 id="ch2">Climate</h2>
+        <p class="story">Learns when you're home and keeps each room at the temperature you set, within half a degree. No schedules to program.</p>
+        <ul class="specs" aria-label="Climate module specs">
+          <li><span>Temperature range</span><b>5–35 °C</b></li>
+          <li><span>Humidity sensing</span><b>0–100 %</b></li>
+          <li><span>Power</span><b>From the hub</b></li>
+        </ul>
+      </div>
+      <div class="inside-art">
+        <svg viewBox="0 0 760 560" role="img" aria-label="The hub pulled apart into its four modules. The climate module is highlighted, with labels naming each module.">
+          <g transform="translate(120,0)">
+            <!-- lights -->
+            <g opacity=".55"><polygon points="40,110 210,190 380,110 380,132 210,212 40,132" fill="#D6D3D1"/><polygon points="40,110 210,30 380,110 210,190" fill="#F5F5F4"/></g>
+            <!-- climate (active, pulled forward) -->
+            <g transform="translate(-14,0)"><polygon points="40,220 210,300 380,220 380,242 210,322 40,242" fill="#78716C"/><polygon points="40,220 210,140 380,220 210,300" fill="#A8A29E"/></g>
+            <!-- security -->
+            <g opacity=".55"><polygon points="40,330 210,410 380,330 380,352 210,432 40,352" fill="#292524"/><polygon points="40,330 210,250 380,330 210,410" fill="#57534E"/></g>
+            <!-- energy -->
+            <g opacity=".55"><polygon points="40,440 210,520 380,440 380,462 210,542 40,462" fill="#78716C"/><polygon points="40,440 210,360 380,440 210,520" fill="#D6D3D1"/><line x1="125" y1="480" x2="210" y2="520" stroke="#C2410C" stroke-width="3"/></g>
+          </g>
+          <!-- callouts -->
+          <g stroke="#FB923C" stroke-width="1" fill="none" opacity=".5"><polyline points="500,110 560,80 640,80"/><polyline points="500,330 560,360 640,360"/><polyline points="500,440 560,470 640,470"/></g>
+          <g stroke="#FB923C" stroke-width="1.5" fill="none"><polyline points="486,220 560,190 640,190"/></g>
+          <circle cx="486" cy="220" r="4" fill="#FB923C"/>
+          <text class="callout-label" x="566" y="72" opacity=".6">Lights</text>
+          <text class="callout-label on" x="566" y="182">Climate</text>
+          <text class="callout-spec" x="566" y="210">±0.5 °C</text>
+          <text class="callout-label" x="566" y="352" opacity=".6">Security</text>
+          <text class="callout-label" x="566" y="462" opacity=".6">Energy</text>
+        </svg>
+      </div>
+    </div>
+    <p class="reassemble">Start with one module. Add the rest when you're ready.</p>
+  </section>
+
+  <!-- Bundles -->
+  <section class="light" id="bundles" aria-labelledby="bundles-title">
+    <div class="wrap">
+      <h2 id="bundles-title">Choose your bundle</h2>
+      <p class="intro">Every bundle starts with the hub. Modules snap on later, so you never pay twice.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Starter</h3>
+          <p class="price">$199 <small>one-time</small></p>
+          <ul class="incl">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Hub</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Lights</li>
+            <li class="no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12" stroke="#57534E" stroke-width="2"/></svg>Climate <span class="sr">(not included)</span></li>
+            <li class="no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12" stroke="#57534E" stroke-width="2"/></svg>Security <span class="sr">(not included)</span></li>
+            <li class="no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12" stroke="#57534E" stroke-width="2"/></svg>Energy <span class="sr">(not included)</span></li>
+          </ul>
+          <a class="btn ghost" href="#register">Register interest</a>
+        </article>
+        <article class="card rec">
+          <h3>Home <span class="tag">Recommended</span></h3>
+          <p class="price">$349 <small>one-time</small></p>
+          <ul class="incl">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Hub</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Lights</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Climate</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Security</li>
+            <li class="no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12" stroke="#57534E" stroke-width="2"/></svg>Energy <span class="sr">(not included)</span></li>
+          </ul>
+          <a class="btn" href="#register">Register interest</a>
+        </article>
+        <article class="card">
+          <h3>Complete</h3>
+          <p class="price">$499 <small>one-time</small></p>
+          <ul class="incl">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Hub</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Lights</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Climate</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Security</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="#1C1917" stroke-width="2"/></svg>Energy</li>
+          </ul>
+          <a class="btn ghost" href="#register">Register interest</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Register interest: shown with one error state -->
+  <section class="light" id="register" aria-labelledby="reg-title" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="reg-title">Hear when Strata launches</h2>
+      <p class="intro">One email at launch. Nothing else.</p>
+      <form class="form" novalidate onsubmit="return false">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" value="sam@example" aria-invalid="true" aria-describedby="email-err" autocomplete="email">
+          <p class="err" id="email-err"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#B91C1C" stroke-width="2"/><path d="M12 7v6M12 16v1" stroke="#B91C1C" stroke-width="2"/></svg>Enter an email address, like name@example.com</p>
+        </div>
+        <div class="field">
+          <label for="module">Which module interests you most? <span style="font-weight:400;color:var(--stone-600)">(optional)</span></label>
+          <select id="module"><option>Not sure yet</option><option>Lights</option><option>Climate</option><option>Security</option><option>Energy</option></select>
+        </div>
+        <div class="field check">
+          <input id="consent" type="checkbox">
+          <label for="consent">Email me about the Strata launch. I can unsubscribe at any time.</label>
+        </div>
+        <button class="btn" type="submit">Register interest</button>
+        <p class="privacy">We only use your email to tell you about the Strata launch. Nothing is sent in this demo.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="light" id="faq" aria-labelledby="faq-title" style="padding-top:0">
+    <div class="wrap"><div class="faq">
+      <h2 id="faq-title">Questions</h2>
+      <details open><summary>Is there a subscription?<span class="pm" aria-hidden="true">+</span></summary><p>No. Everything works without a monthly fee.</p></details>
+      <details><summary>What does Strata work with?<span class="pm" aria-hidden="true">+</span></summary><p>Answer drafted at Step 3.</p></details>
+      <details><summary>When does it ship?<span class="pm" aria-hidden="true">+</span></summary><p>Answer drafted at Step 3.</p></details>
+    </div></div>
+  </section>
+
+  <!-- Tokens -->
+  <section class="tokens" aria-labelledby="tok-title">
+    <div class="wrap">
+      <h2 id="tok-title">Tokens</h2>
+      <div class="swatches">
+        <div class="sw"><i style="background:#FAFAF9"></i><div><b>stone-50</b>#FAFAF9 page</div></div>
+        <div class="sw"><i style="background:#F5F5F4"></i><div><b>stone-100</b>#F5F5F4 cards</div></div>
+        <div class="sw"><i style="background:#57534E"></i><div><b>stone-600</b>#57534E 7.3:1</div></div>
+        <div class="sw"><i style="background:#1C1917"></i><div><b>stone-900</b>#1C1917 16.7:1</div></div>
+        <div class="sw"><i style="background:#C2410C"></i><div><b>signal</b>#C2410C 5.18:1</div></div>
+        <div class="sw"><i style="background:#9A3412"></i><div><b>signal-dark</b>#9A3412 hover</div></div>
+        <div class="sw"><i style="background:#FB923C"></i><div><b>signal-glow</b>#FB923C on dark</div></div>
+        <div class="sw"><i style="background:#B91C1C"></i><div><b>error</b>#B91C1C 6.19:1</div></div>
+      </div>
+      <div class="type-row"><small>Display · Archivo 800</small><span style="font:800 56px/1 var(--display);letter-spacing:-.03em">Every room.</span></div>
+      <div class="type-row"><small>Heading · Archivo 700</small><span style="font:700 32px/1.1 var(--display);letter-spacing:-.02em">Choose your bundle</span></div>
+      <div class="type-row"><small>Body · DM Sans 400</small><span>Strata is a smart home hub built from modules that snap together.</span></div>
+      <div class="type-row"><small>Specs · IBM Plex Mono 500</small><span style="font:500 15px var(--mono)">5–35 °C · 0–100 % · $349</span></div>
+    </div>
+  </section>
+</main>
+
+<footer class="dark">
+  <div class="wrap"><span>Strata is a fictional product made for a design pilot.</span><a href="#top">Back to top</a></div>
+</footer>
+</body>
+</html>

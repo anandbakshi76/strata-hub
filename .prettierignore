@@ -1,0 +1,13 @@
+dist/
+node_modules/
+logs/
+test-results/
+playwright-report/
+design/
+.claude/skills/
+docs/
+*.md
+package-lock.json
+skills-lock.json
+.claude/
+scripts/agent-guard.mjs

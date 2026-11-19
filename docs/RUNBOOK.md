@@ -17,7 +17,7 @@ How Strata Hub is run once it's live. Keep it current: the review checks it when
 - Health check: (to be filled in)
 - Logs and traces: traces are in `logs/traces/` as JSON lines. Find a request by the trace ID shown in errors.
 - Dashboards and alerts: as set in `docs/OBSERVABILITY.md`, Budgets and alerts.
-- Who to call: (to be filled in)
+- Who to call: Anand Bakshi
 
 ## Limits for an agent reading logs
 

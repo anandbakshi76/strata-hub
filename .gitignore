@@ -10,3 +10,9 @@ test-results/
 *.sqlite
 logs/
 .agent-logs/
+
+# Design references are other designers' work: kept locally, never committed or published
+design/references/*.png
+design/references/*.jpg
+playwright-report/
+dist/
