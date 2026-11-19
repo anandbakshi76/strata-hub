@@ -4,7 +4,7 @@
 
 `npm run check` runs every check:
 
-- JavaScript and TypeScript: format (Prettier), lint (ESLint), types (tsc) and tests (vitest)
+- JavaScript and TypeScript: format (Prettier), lint (ESLint), types (tsc), unit tests (Vitest) and browser tests (Playwright with axe, against the production build)
 
 ## Planning
 

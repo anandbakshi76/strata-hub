@@ -13,7 +13,7 @@ for (const width of [375, 768, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
 
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Strata Hub: foundation");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("One hub. Every room.");
     await expect(page.locator("#app")).toHaveAttribute("data-ready", "true");
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - window.innerWidth,
