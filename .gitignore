@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv/
+node_modules/
+__pycache__/
+coverage/
+test-results/
+*.db
+*.sqlite
+logs/
+.agent-logs/
