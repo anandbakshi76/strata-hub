@@ -9,4 +9,4 @@ The first release of the Strata launch page. Strata is a fictional smart home hu
 - **Choose a bundle:** Starter $199, Home $349 and Complete $499. Every bundle includes the hub.
 - **Hear when it launches:** register interest with your email and, if you like, the module you care about most. Nothing is sent in this demo, and nothing is stored or tracked.
 - **Questions:** six answers, from subscriptions to returns.
-- **Works for everyone:** keyboard and screen reader friendly, readable without JavaScript, and fast on phones (main content in about 1.6 seconds).
+- **Works for everyone:** works with the keyboard alone, checked against WCAG 2.2 AA, readable without JavaScript, and fast on phones (main content in about 1.6 seconds in our tests).

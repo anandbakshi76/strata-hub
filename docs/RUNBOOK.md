@@ -9,12 +9,12 @@ How Strata Hub is run once it's live. Keep it current: the review checks it when
 
 ## Roll back
 
-- Command: in Netlify, **Deploys**, the last good deploy, **Publish deploy**; or `git revert` the bad merge and merge that. Details in `docs/DEPLOY.md`, Roll back.
+- Command: in Netlify, **Deploys**, the last good deploy, **Publish deploy**; or the **Revert** button on the merged pull request in GitHub (on the command line, `git revert -m 1 <merge commit>`). Details in `docs/DEPLOY.md`, Roll back; how to rehearse it in Rehearse a rollback.
 - Last rehearsed on: ____ by ____
 
 ## Health
 
-- Health check: the address answers 200 with the `content-security-policy` header (`curl -I <address>`), the page shows "One hub. Every room.", and the browser console shows no errors.
+- Health check: the address answers 200 with the `content-security-policy` header (`curl.exe -I <address>` on Windows, `curl -I <address>` on a Mac), the page shows "One hub. Every room.", and the browser console shows no errors.
 - Logs and traces: traces are in `logs/traces/` as JSON lines. Find a request by the trace ID shown in errors.
 - Dashboards and alerts: as set in `docs/OBSERVABILITY.md`, Budgets and alerts.
 - Who to call: Anand Bakshi

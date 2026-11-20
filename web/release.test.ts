@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -10,13 +10,17 @@ const file = (p: string) => readFileSync(new URL(p, root), "utf8");
 
 describe("the production build", () => {
   const out = mkdtempSync(join(tmpdir(), "strata-build-"));
-  const log = execFileSync(
+  // Vite writes warnings to stderr, so both streams are checked (review B1).
+  const run = spawnSync(
     process.execPath,
     [join("node_modules", "vite", "bin", "vite.js"), "build", "--outDir", out, "--emptyOutDir"],
-    { cwd: new URL(".", root), encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+    { cwd: new URL(".", root), encoding: "utf8" },
   );
+  const log = `${run.stdout}
+${run.stderr}`;
 
   it("finishes with no errors and no warnings", () => {
+    expect(run.status).toBe(0);
     expect(log).toMatch(/built in/);
     expect(log).not.toMatch(/\(!\)|warning|error/i);
   });
