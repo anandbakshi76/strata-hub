@@ -28,3 +28,12 @@ All boxes in PLAN.md are ticked except one, explained: phase 3's "zero console e
 - Tests: Vitest 29 (telemetry, structure, styles, release), Playwright 63 (Chrome, plus Edge for the page and security checks).
 - JavaScript 177 KB compressed (budget 600 KB); the 3D chunk loads after the first scroll has settled.
 - Lighthouse mobile: performance 97, accessibility 100, best practices 100, SEO 100.
+
+## Live site check (20 November 2026)
+
+Deployed by the person at https://strata-hub-yj5y.netlify.app (visitor access set to public).
+
+- The page, robots.txt, sitemap.xml and the share image answer 200; the security headers from `netlify.toml` are sent (Content Security Policy with `frame-ancestors 'none'`, `nosniff`, referrer and permissions policies); hashed assets are cached for a year.
+- Lighthouse mobile on the live site (one run; two more could not start for lack of memory on this machine): main content 2.02 s (target 2.5, met), layout shift 0, accessibility 100, SEO 100, performance 81, best practices 92.
+- Best practices lost points for one console error: Netlify injects its own toolbar script (`/.netlify/scripts/hud`) into the live page, and its inline style is blocked by the site's Content Security Policy, as intended. Fix in Netlify, not in code: turn the Netlify toolbar (Drawer) off for production deploys.
+- The canonical link and sharing tags still show the assumed address until `fix-site-address` is merged.
