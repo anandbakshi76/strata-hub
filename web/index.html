@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="./styles/tokens.css" />
     <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/site.css" />
   </head>
   <body>
     <a class="skip-link" href="#app">Skip to content</a>
@@ -17,113 +18,140 @@
     <header class="site-header">
       <a class="logo" href="#top">Strata</a>
       <nav aria-label="Main">
-        <a href="#inside">Modules</a>
-        <a href="#bundles">Bundles</a>
-        <a href="#faq">FAQ</a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">
+          Menu
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#inside">Modules</a>
+          <a href="#bundles">Bundles</a>
+          <a href="#faq">FAQ</a>
+        </div>
         <a class="button" href="#register">Register interest</a>
       </nav>
     </header>
 
     <main id="app">
       <section id="top" class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title">One hub. Every room.</h1>
-        <p class="lede">
-          Strata is a smart home hub built from modules that snap together. Start with light. Add
-          climate, security and energy when you're ready.
-        </p>
-        <a class="button" href="#register">Register interest</a>
+        <div class="hero-text">
+          <h1 id="hero-title">One hub. Every room.</h1>
+          <p class="lede">
+            Strata is a smart home hub built from modules that snap together. Start with light. Add
+            climate, security and energy when you're ready.
+          </p>
+          <a class="button" href="#register">Register interest</a>
+        </div>
+        <figure class="still">
+          <img
+            src="./assets/stills/hub-assembled.svg"
+            width="520"
+            height="420"
+            alt="The Strata hub, assembled: a low square base with four module plates stacked on top."
+          />
+        </figure>
       </section>
 
       <section id="inside" class="inside" aria-labelledby="inside-title">
         <h2 id="inside-title">Scroll to look inside</h2>
 
-        <article id="lights" class="chapter" aria-labelledby="lights-title">
-          <h3 id="lights-title">Lights</h3>
-          <p>
-            Turns the lights on as you walk in and dims them as the evening comes. Set a scene once
-            and every room follows it.
-          </p>
-          <dl class="specs">
-            <div>
-              <dt>Lights per hub</dt>
-              <dd>Up to 50</dd>
-            </div>
-            <div>
-              <dt>Works with</dt>
-              <dd>Matter and Zigbee</dd>
-            </div>
-            <div>
-              <dt>Response time</dt>
-              <dd>Under 100 ms</dd>
-            </div>
-          </dl>
-        </article>
+        <div class="inside-grid">
+          <div class="chapters">
+            <article id="lights" class="chapter" aria-labelledby="lights-title">
+              <h3 id="lights-title">Lights</h3>
+              <p>
+                Turns the lights on as you walk in and dims them as the evening comes. Set a scene
+                once and every room follows it.
+              </p>
+              <dl class="specs">
+                <div>
+                  <dt>Lights per hub</dt>
+                  <dd>Up to 50</dd>
+                </div>
+                <div>
+                  <dt>Works with</dt>
+                  <dd>Matter and Zigbee</dd>
+                </div>
+                <div>
+                  <dt>Response time</dt>
+                  <dd>Under 100 ms</dd>
+                </div>
+              </dl>
+            </article>
 
-        <article id="climate" class="chapter" aria-labelledby="climate-title">
-          <h3 id="climate-title">Climate</h3>
-          <p>
-            Learns when you're home and keeps each room at the temperature you set, within 0.5 °C.
-            No schedules to program.
-          </p>
-          <dl class="specs">
-            <div>
-              <dt>Temperature range</dt>
-              <dd>5 to 35 °C</dd>
-            </div>
-            <div>
-              <dt>Humidity sensing</dt>
-              <dd>0 to 100%</dd>
-            </div>
-            <div>
-              <dt>Power</dt>
-              <dd>Battery-free, from the hub</dd>
-            </div>
-          </dl>
-        </article>
+            <article id="climate" class="chapter" aria-labelledby="climate-title">
+              <h3 id="climate-title">Climate</h3>
+              <p>
+                Learns when you're home and keeps each room at the temperature you set, within 0.5
+                °C. No schedules to program.
+              </p>
+              <dl class="specs">
+                <div>
+                  <dt>Temperature range</dt>
+                  <dd>5 to 35 °C</dd>
+                </div>
+                <div>
+                  <dt>Humidity sensing</dt>
+                  <dd>0 to 100%</dd>
+                </div>
+                <div>
+                  <dt>Power</dt>
+                  <dd>Battery-free, from the hub</dd>
+                </div>
+              </dl>
+            </article>
 
-        <article id="security" class="chapter" aria-labelledby="security-title">
-          <h3 id="security-title">Security</h3>
-          <p>
-            Knows when a door opens or the house goes quiet when it shouldn't. Alerts reach your
-            phone in seconds, and recordings stay at home.
-          </p>
-          <dl class="specs">
-            <div>
-              <dt>Door and window sensors</dt>
-              <dd>Up to 30</dd>
-            </div>
-            <div>
-              <dt>Alert time</dt>
-              <dd>Under 3 seconds</dd>
-            </div>
-            <div>
-              <dt>Video storage</dt>
-              <dd>64 GB, on the hub</dd>
-            </div>
-          </dl>
-        </article>
+            <article id="security" class="chapter" aria-labelledby="security-title">
+              <h3 id="security-title">Security</h3>
+              <p>
+                Knows when a door opens or the house goes quiet when it shouldn't. Alerts reach your
+                phone in seconds, and recordings stay at home.
+              </p>
+              <dl class="specs">
+                <div>
+                  <dt>Door and window sensors</dt>
+                  <dd>Up to 30</dd>
+                </div>
+                <div>
+                  <dt>Alert time</dt>
+                  <dd>Under 3 seconds</dd>
+                </div>
+                <div>
+                  <dt>Video storage</dt>
+                  <dd>64 GB, on the hub</dd>
+                </div>
+              </dl>
+            </article>
 
-        <article id="energy" class="chapter" aria-labelledby="energy-title">
-          <h3 id="energy-title">Energy</h3>
-          <p>
-            Shows what each circuit uses as it happens, and runs the big appliances when power is
-            cheaper.
-          </p>
-          <dl class="specs">
-            <div>
-              <dt>Circuits measured</dt>
-              <dd>Up to 16</dd>
-            </div>
-            <div>
-              <dt>Reading interval</dt>
-              <dd>Every 2 seconds</dd>
-            </div>
-            <div>
-              <dt>Tariff aware</dt>
-              <dd>Yes</dd>
-            </div>
-          </dl>
-        </article>
+            <article id="energy" class="chapter" aria-labelledby="energy-title">
+              <h3 id="energy-title">Energy</h3>
+              <p>
+                Shows what each circuit uses as it happens, and runs the big appliances when power
+                is cheaper.
+              </p>
+              <dl class="specs">
+                <div>
+                  <dt>Circuits measured</dt>
+                  <dd>Up to 16</dd>
+                </div>
+                <div>
+                  <dt>Reading interval</dt>
+                  <dd>Every 2 seconds</dd>
+                </div>
+                <div>
+                  <dt>Tariff aware</dt>
+                  <dd>Yes</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+          <figure class="still">
+            <img
+              src="./assets/stills/hub-exploded.svg"
+              width="420"
+              height="600"
+              alt="The hub pulled apart into its four module plates, stacked one above the other: lights at the top, then climate, security and energy."
+            />
+          </figure>
+        </div>
 
         <p id="reassemble" class="reassemble">
           Start with one module. Add the rest when you're ready.
@@ -137,23 +165,24 @@
             <h3 id="b-starter">Starter</h3>
             <p class="price">$199</p>
             <ul>
-              <li>Hub: included</li>
-              <li>Lights: included</li>
-              <li>Climate: not included</li>
-              <li>Security: not included</li>
-              <li>Energy: not included</li>
+              <li class="yes">Hub: included</li>
+              <li class="yes">Lights: included</li>
+              <li class="no">Climate: not included</li>
+              <li class="no">Security: not included</li>
+              <li class="no">Energy: not included</li>
             </ul>
             <a class="button secondary" href="#register">Register interest</a>
           </article>
           <article class="card" aria-labelledby="b-home">
+            <p class="tag">Recommended</p>
             <h3 id="b-home">Home</h3>
             <p class="price">$349</p>
             <ul>
-              <li>Hub: included</li>
-              <li>Lights: included</li>
-              <li>Climate: included</li>
-              <li>Security: included</li>
-              <li>Energy: not included</li>
+              <li class="yes">Hub: included</li>
+              <li class="yes">Lights: included</li>
+              <li class="yes">Climate: included</li>
+              <li class="yes">Security: included</li>
+              <li class="no">Energy: not included</li>
             </ul>
             <a class="button" href="#register">Register interest</a>
           </article>
@@ -161,11 +190,11 @@
             <h3 id="b-complete">Complete</h3>
             <p class="price">$499</p>
             <ul>
-              <li>Hub: included</li>
-              <li>Lights: included</li>
-              <li>Climate: included</li>
-              <li>Security: included</li>
-              <li>Energy: included</li>
+              <li class="yes">Hub: included</li>
+              <li class="yes">Lights: included</li>
+              <li class="yes">Climate: included</li>
+              <li class="yes">Security: included</li>
+              <li class="yes">Energy: included</li>
             </ul>
             <a class="button secondary" href="#register">Register interest</a>
           </article>
@@ -178,28 +207,66 @@
         <form novalidate>
           <!-- Shown until main.ts removes it, so it shows whenever JavaScript is off. -->
           <p class="notice" data-no-js>Turn on JavaScript to register interest.</p>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="module">Which module interests you most? (optional)</label>
-            <select id="module" name="module">
-              <option>Not sure yet</option>
-              <option>Lights</option>
-              <option>Climate</option>
-              <option>Security</option>
-              <option>Energy</option>
-            </select>
-          </div>
-          <div class="field check">
-            <input id="consent" name="consent" type="checkbox" required />
-            <label for="consent"
-              >Email me about the Strata launch. I can unsubscribe at any time.</label
-            >
-          </div>
-          <!-- type="button" until phase 2a adds the form's behaviour: with JavaScript off it must never submit. -->
-          <button class="button" type="button">Register interest</button>
+          <!-- Disabled until web/form.ts runs: with JavaScript off nothing can be typed or sent, and Enter can't submit (rule 4). -->
+          <fieldset class="fields" disabled>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+              <p class="error" id="email-error" hidden>
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                ><span></span>
+              </p>
+            </div>
+            <div class="field">
+              <label for="module">Which module interests you most? (optional)</label>
+              <select id="module" name="module">
+                <option>Not sure yet</option>
+                <option>Lights</option>
+                <option>Climate</option>
+                <option>Security</option>
+                <option>Energy</option>
+              </select>
+            </div>
+            <div class="field check">
+              <input id="consent" name="consent" type="checkbox" required />
+              <label for="consent"
+                >Email me about the Strata launch. I can unsubscribe at any time.</label
+              >
+              <p class="error" id="consent-error" hidden>
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                ><span></span>
+              </p>
+            </div>
+            <!-- type="button" on purpose: with JavaScript off it can never submit; web/form.ts handles the click. -->
+            <button class="button" type="button">Register interest</button>
+          </fieldset>
+          <p class="form-status" role="status"></p>
           <p class="privacy">
             We only use your email to tell you about the Strata launch. Nothing is sent in this
             demo.
