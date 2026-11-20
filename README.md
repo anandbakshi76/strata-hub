@@ -8,5 +8,6 @@ A scroll-driven launch page for Strata, a fictional modular smart home hub whose
 - `npm run dev` starts the page at http://localhost:5173.
 - `npm run check` runs every check: format, lint, types, unit tests and browser tests (Playwright with axe, against the production build, using the installed Chrome).
 - `npm run build` writes the static site to `dist/`.
+- `npm run perf` measures the frame rate in the 3D section (Pixel 5 profile, 4x CPU slowdown).
 
 See `docs/STATUS.md` for what is built so far, and `docs/PLAN.md` for the phases.

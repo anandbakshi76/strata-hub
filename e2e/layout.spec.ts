@@ -79,13 +79,16 @@ test("phone: bundles stack in one column", async ({ page }) => {
   expect(new Set(lefts).size).toBe(1);
 });
 
-test("the stills show with text alternatives and fixed sizes (SPEC 9, no layout shift)", async ({
+test("the stills have text alternatives and fixed sizes (SPEC 9, no layout shift)", async ({
   page,
 }) => {
   await page.goto("/");
+  // The hero still always shows. The chapter still shows unless the 3D hub has replaced it (phase
+  // 2b); the reduced-motion and no-WebGL tests check it shows in those cases.
+  await expect(page.locator(".hero .still img")).toBeVisible();
+  await expect(page.locator("#inside .still img, #inside .still canvas").first()).toBeVisible();
   for (const sel of [".hero .still img", "#inside .still img"]) {
     const img = page.locator(sel);
-    await expect(img).toBeVisible();
     expect((await img.getAttribute("alt"))?.length ?? 0).toBeGreaterThan(20);
     expect(await img.getAttribute("width")).toBeTruthy();
     expect(await img.getAttribute("height")).toBeTruthy();

@@ -78,3 +78,9 @@ Recorded on 19 November 2026, approved by Anand Bakshi with the spec (QG2). Reas
 - **How we'll know it worked:** at least 4% of visitors register interest; LCP under 2.5 s at the 75th percentile on a mid-range phone; Lighthouse accessibility 95 or more; the 3D section at 50 frames per second or more on that phone.
 - **It must never:** hide content when 3D or JavaScript fails; use copied brand assets; ask for more than an email and one optional choice; send form data anywhere without consent; autoplay sound.
 - **Stop and ask a person when:** adding any third-party script or tracker; changing a price or product claim; the 3D can't meet the speed targets.
+
+Recorded on 20 November 2026, approved by Anand Bakshi at the phase 2b review. Reason: a faster first paint and a simpler, sharper fallback; the intent's lines above stay as they were.
+
+- **Key screens:** "Hero with the 3D hub" is built as the hero with a still of the hub; the 3D hub appears in the look-inside section, where it comes apart. SPEC 5.1 and 8 updated.
+- **Stills:** the fallback stills are self-made drawings matching the model, not renders of it. SPEC 9 updated.
+- **Phones:** the 3D hub is a band at the top with a label naming the module, not a full-screen canvas. DESIGN.md 8 updated.

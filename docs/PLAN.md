@@ -59,7 +59,9 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 9. `scripts/render-stills.ts`: renders the assembled and exploded hub to WebP through Playwright, inside a telemetry span, replacing the interim SVG stills.
 10. Speed check against acceptance test 4 (50 frames per second). If it fails, stop and ask (rule 8).
 
-**Files:** `web/styles/*.css`, `web/main.ts`, `web/form.ts`, `web/scene/hub.ts`, `web/scene/scroll.ts`, `web/assets/stills/`, `scripts/render-stills.ts`, `e2e/layout.spec.ts`, `e2e/form.spec.ts`, `e2e/motion.spec.ts`, `web/scene/hub.test.ts`, `package.json` (fonts), `docs/STATUS.md`, `docs/log/`.
+**Files:** `web/styles/*.css`, `web/main.ts`, `web/form.ts`, `web/scene/hub.ts`, `web/scene/scroll.ts` (built as `web/scene/scene.ts` and `web/scene/start.ts`), `web/assets/stills/`, `scripts/render-stills.ts`, `e2e/layout.spec.ts`, `e2e/form.spec.ts`, `e2e/motion.spec.ts`, `web/scene/hub.test.ts`, `package.json` (fonts), `docs/STATUS.md`, `docs/log/`.
+
+**Departures in 2b (recorded 20 November 2026; departures 1, 2 and 5 approved by Anand Bakshi on 20 November 2026, with SPEC, DESIGN and INTENT updated):** (1) The stills stay as the self-made SVG drawings approved with the design sample, not renders of the model (step 9): they are about 1 kB each, sharp at any size and already approved; `scripts/render-stills.ts` was not built. (2) The hero keeps its still image; the 3D hub lives only in the look-inside section, where it explodes. The hero is the Largest Contentful Paint, so a still there keeps it fast (acceptance test 2), and Three.js loads after the page is readable. (3) The pinned area is CSS `position: sticky`, not a GSAP pin: still one pinned area, with no layout jump. (5) Phones and tablets: the hub is a band at the top (34% of the screen) with the chapters scrolling below it and a label in the band naming the active module, instead of DESIGN.md 8's full-screen canvas with a text panel at the bottom. (4) The frame-rate check is `npm run perf` (Pixel 5 profile, 4x CPU slowdown), kept out of `npm run check` because it measures rather than passes or fails.
 
 **Could break:** the speed target (3D on a mid-range phone); text reflow when fonts load (layout shift); the pinned area on iOS Safari; reading order if the canvas sits in front of the text.
 
@@ -70,12 +72,12 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 - [x] [2a] An empty or invalid email and an unticked consent box show the SPEC 9 messages next to the fields; a valid submission shows the confirmation; Playwright sees no network request on submit (rule 4).
 - [x] [2a] axe finds no WCAG 2.2 AA failures; every text colour pair is at least 4.5:1 (DESIGN.md 2).
 - [x] [2a] No request to any domain other than the site's own (rule 6), checked by Playwright.
-- [ ] [2b] The model has a base and four modules, under 20,000 triangles, built from shapes only (rule 1).
-- [ ] [2b] Scrolling explodes the hub, highlights each module in its chapter and reassembles it; scrolling up reverses it (SPEC 4.2), checked in the browser.
-- [ ] [2b] With reduced motion, or with WebGL turned off, the stills show, nothing is pinned and all content reads (SPEC 9).
-- [ ] [2b] The 3D section holds 50 frames per second or more under Playwright's mid-range phone profile with 4x CPU slowdown, or the person has decided under rule 8 (acceptance test 4).
-- [ ] [2b] Zero console errors while scrolling the whole page.
-- [ ] `npm run check` passes.
+- [x] [2b] The model has a base and four modules, under 20,000 triangles, built from shapes only (rule 1).
+- [x] [2b] Scrolling explodes the hub, highlights each module in its chapter and reassembles it; scrolling up reverses it (SPEC 4.2), checked in the browser.
+- [x] [2b] With reduced motion, or with WebGL turned off, the stills show, nothing is pinned and all content reads (SPEC 9).
+- [x] [2b] The 3D section holds 50 frames per second or more under Playwright's mid-range phone profile with 4x CPU slowdown, or the person has decided under rule 8 (acceptance test 4).
+- [x] [2b] Zero console errors while scrolling the whole page.
+- [x] `npm run check` passes.
 
 ## Phase 3: SEO, Accessibility & Performance
 

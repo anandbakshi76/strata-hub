@@ -1,0 +1,91 @@
+
+Running 9 tests using 1 worker
+
+  ok 1 e2e\motion.spec.ts:11:3 › with WebGL and motion › the 3D hub replaces the chapter still and the page has no console errors while scrolling (3.6s)
+  ok 2 e2e\motion.spec.ts:30:3 › with WebGL and motion › scrolling explodes the hub, highlights each module and reassembles it; scrolling up reverses it (3.9s)
+  ok 3 e2e\motion.spec.ts:57:3 › with WebGL and motion › the hub stays in place (one pinned area) while the chapters scroll past (2.2s)
+  ok 4 e2e\motion.spec.ts:72:3 › with WebGL and motion › on wide screens a callout beside the hub names the active module (1.7s)
+  x  5 e2e\motion.spec.ts:81:3 › with WebGL and motion › the hub has snapped back together while it is still fully on screen (review S1) (5.3s)
+  x  6 e2e\motion.spec.ts:103:5 › on phones and tablets (review B1, S3) › 375px: the highlighted module is the chapter being read, and a label in the band names it (6.5s)
+  x  7 e2e\motion.spec.ts:103:5 › on phones and tablets (review B1, S3) › 768px: the highlighted module is the chapter being read, and a label in the band names it (6.5s)
+  ok 8 e2e\motion.spec.ts:128:3 › with reduced motion › the stills show, no canvas is made, nothing is pinned and all content reads (2.2s)
+  ok 9 e2e\motion.spec.ts:142:3 › without WebGL › the stills show and no canvas is made (2.2s)
+
+
+  1) e2e\motion.spec.ts:81:3 › with WebGL and motion › the hub has snapped back together while it is still fully on screen (review S1) 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(explode).toBeLessThan(0.05);
+       96 |     const box = await page.locator("#inside canvas").boundingBox();
+    >  97 |     expect(box !== null && box.y >= 0 && box.y + box.height <= 900).toBe(true);
+          |                                                                     ^
+       98 |   });
+       99 | });
+      100 |
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:97:69
+
+    Error Context: test-results\motion-with-WebGL-and-moti-6b8b9--fully-on-screen-review-S1-\error-context.md
+
+  2) e2e\motion.spec.ts:103:5 › on phones and tablets (review B1, S3) › 375px: the highlighted module is the chapter being read, and a label in the band names it 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('#inside')
+    Expected: "lights"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('#inside') with timeout 5000ms
+      - waiting for locator('#inside')
+        14 × locator resolved to <section id="inside" data-explode="0" class="inside has-3d" aria-labelledby="inside-title">…</section>
+           - unexpected value "null"
+
+
+      115 |           window.scrollBy(0, story.getBoundingClientRect().top - below);
+      116 |         });
+    > 117 |         await expect(inside(page)).toHaveAttribute("data-active", id);
+          |                                    ^
+      118 |         const name = id[0]?.toUpperCase() + id.slice(1);
+      119 |         await expect(page.locator("#inside .callout")).toBeVisible();
+      120 |         await expect(page.locator("#inside .callout")).toContainText(name);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:117:36
+
+    Error Context: test-results\motion-on-phones-and-table-189ba--label-in-the-band-names-it\error-context.md
+
+  3) e2e\motion.spec.ts:103:5 › on phones and tablets (review B1, S3) › 768px: the highlighted module is the chapter being read, and a label in the band names it 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('#inside')
+    Expected: "lights"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('#inside') with timeout 5000ms
+      - waiting for locator('#inside')
+        14 × locator resolved to <section id="inside" data-explode="0" class="inside has-3d" aria-labelledby="inside-title">…</section>
+           - unexpected value "null"
+
+
+      115 |           window.scrollBy(0, story.getBoundingClientRect().top - below);
+      116 |         });
+    > 117 |         await expect(inside(page)).toHaveAttribute("data-active", id);
+          |                                    ^
+      118 |         const name = id[0]?.toUpperCase() + id.slice(1);
+      119 |         await expect(page.locator("#inside .callout")).toBeVisible();
+      120 |         await expect(page.locator("#inside .callout")).toContainText(name);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:117:36
+
+    Error Context: test-results\motion-on-phones-and-table-61f3d--label-in-the-band-names-it\error-context.md
+
+  3 failed
+    e2e\motion.spec.ts:81:3 › with WebGL and motion › the hub has snapped back together while it is still fully on screen (review S1) 
+    e2e\motion.spec.ts:103:5 › on phones and tablets (review B1, S3) › 375px: the highlighted module is the chapter being read, and a label in the band names it 
+    e2e\motion.spec.ts:103:5 › on phones and tablets (review B1, S3) › 768px: the highlighted module is the chapter being read, and a label in the band names it 
+  6 passed (41.0s)

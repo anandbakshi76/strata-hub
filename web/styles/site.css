@@ -73,8 +73,7 @@ h3 {
 .register,
 .faq,
 .inside > h2,
-.inside-grid,
-.reassemble {
+.inside-grid {
   padding-inline: var(--gutter);
 }
 
@@ -256,8 +255,7 @@ h3 {
 }
 
 .inside > h2,
-.inside-grid,
-.reassemble {
+.inside-grid {
   max-width: var(--content-max);
   margin-inline: auto;
 }
@@ -289,10 +287,10 @@ h3 {
     align-items: start;
   }
 
+  /* The still scrolls with the page; only the 3D hub is pinned (.has-3d below), so with reduced
+     motion or no WebGL nothing is pinned (SPEC 9, DESIGN 7). */
   .inside-grid .still {
     order: 0;
-    position: sticky;
-    top: 112px;
     max-width: 420px;
   }
 }
@@ -352,7 +350,7 @@ h3 {
 }
 
 .reassemble {
-  text-align: center;
+  text-align: left;
   padding-block: var(--space-8);
   margin-block: 0;
   font: 700 clamp(22px, 3vw, 32px) / 1.25 var(--font-display);
@@ -619,4 +617,101 @@ h3 {
 
 .site-footer a {
   color: var(--signal-glow);
+}
+
+/* Phase 2b: the 3D hub replaces the chapter still (DESIGN.md 6 and 7). */
+.inside.has-3d .still img {
+  display: none;
+}
+
+.inside.has-3d .still {
+  position: sticky;
+  top: 64px;
+  z-index: 1;
+  max-width: none;
+  height: 34svh;
+  background: var(--stone-900);
+  border-bottom: 1px solid var(--hairline-dark);
+}
+
+.inside.has-3d .still canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .inside.has-3d .still {
+    top: 96px;
+    height: calc(100svh - 128px);
+    max-width: none;
+  }
+}
+
+.callout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 72px;
+  margin-top: -14px;
+  pointer-events: none;
+  color: var(--stone-200);
+}
+
+.callout::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 64px;
+  border-top: 1px solid var(--signal-glow);
+}
+
+.callout-name {
+  font: 500 15px var(--font-body);
+}
+
+.callout-spec {
+  font: 500 13px var(--font-mono);
+  color: var(--stone-400);
+}
+
+/* Callouts only on wide screens: on phones the chapter text says the same (gap 21). */
+@media (min-width: 768px) {
+  .callout.on {
+    display: flex;
+  }
+}
+
+/* The reassemble line sits inside the sticky area (review S1): the hub snaps back while on screen. */
+.reassemble {
+  padding-bottom: var(--space-9);
+}
+
+@media (min-width: 1024px) {
+  .reassemble {
+    min-height: 60svh;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Phones and tablets (review B1, S3): the callout becomes a label inside the band at the top. */
+@media (max-width: 1023px) {
+  .callout.on {
+    display: flex;
+    top: auto;
+    bottom: var(--space-3);
+    left: var(--gutter);
+    padding-left: 0;
+    margin-top: 0;
+    transform: none !important;
+  }
+
+  .callout::before {
+    display: none;
+  }
 }
