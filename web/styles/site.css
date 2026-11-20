@@ -73,8 +73,7 @@ h3 {
 .register,
 .faq,
 .inside > h2,
-.inside-grid,
-.reassemble {
+.inside-grid {
   padding-inline: var(--gutter);
 }
 
@@ -256,8 +255,7 @@ h3 {
 }
 
 .inside > h2,
-.inside-grid,
-.reassemble {
+.inside-grid {
   max-width: var(--content-max);
   margin-inline: auto;
 }
@@ -352,7 +350,7 @@ h3 {
 }
 
 .reassemble {
-  text-align: center;
+  text-align: left;
   padding-block: var(--space-8);
   margin-block: 0;
   font: 700 clamp(22px, 3vw, 32px) / 1.25 var(--font-display);
@@ -685,5 +683,35 @@ h3 {
 @media (min-width: 768px) {
   .callout.on {
     display: flex;
+  }
+}
+
+/* The reassemble line sits inside the sticky area (review S1): the hub snaps back while on screen. */
+.reassemble {
+  padding-bottom: var(--space-9);
+}
+
+@media (min-width: 1024px) {
+  .reassemble {
+    min-height: 60svh;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Phones and tablets (review B1, S3): the callout becomes a label inside the band at the top. */
+@media (max-width: 1023px) {
+  .callout.on {
+    display: flex;
+    top: auto;
+    bottom: var(--space-3);
+    left: var(--gutter);
+    padding-left: 0;
+    margin-top: 0;
+    transform: none !important;
+  }
+
+  .callout::before {
+    display: none;
   }
 }

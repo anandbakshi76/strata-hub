@@ -110,7 +110,8 @@ test.describe("on phones and tablets (review B1, S3)", () => {
         // Put the chapter's story just below the band at the top, where it is read.
         await page.locator(`#${id}`).evaluate((el) => {
           const band = document.querySelector("#inside .still") as HTMLElement;
-          const below = band.getBoundingClientRect().bottom + 16;
+          // Where the band sits once it sticks under the 64 px header, not where it is now.
+          const below = 64 + band.offsetHeight + 16;
           const story = el.querySelector("p") as HTMLElement;
           window.scrollBy(0, story.getBoundingClientRect().top - below);
         });
@@ -118,6 +119,9 @@ test.describe("on phones and tablets (review B1, S3)", () => {
         const name = id[0]?.toUpperCase() + id.slice(1);
         await expect(page.locator("#inside .callout")).toBeVisible();
         await expect(page.locator("#inside .callout")).toContainText(name);
+        // And with the chapter in the middle of the screen, as the review measured it.
+        await scrollTo(page, `#${id}`);
+        await expect(inside(page)).toHaveAttribute("data-active", id);
       }
     });
   }

@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 import { writeFileSync, mkdirSync } from "node:fs";
 
 // Scrolls through the look-inside chapters on a Pixel 5 profile with 4x CPU slowdown and counts
-// frames. Writes the result to logs/perf.json. Software WebGL (SwiftShader) in headless Chrome is
-// slower than a phone's GPU, so this is a pessimistic number.
+// frames. Writes the result to logs/perf.json. It counts main-thread frames; CPU slowdown doesn't slow
+// the GPU process, so this is an approximation. A check on a real phone is still open (PLAN choice 6).
 test("frame rate while scrolling the 3D section (acceptance test 4)", async ({ page }) => {
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });

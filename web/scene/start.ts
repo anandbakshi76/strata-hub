@@ -29,6 +29,13 @@ export function start(): boolean {
     return false;
   }
   section.classList.add("has-3d");
+  // If the GPU drops the context, go back to the stills (SPEC 9, review N5).
+  canvas.addEventListener("webglcontextlost", () => {
+    section.classList.remove("has-3d");
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+    canvas.remove();
+    still.querySelector(".callout")?.remove();
+  });
 
   const callout = document.createElement("div");
   callout.className = "callout";
@@ -68,7 +75,7 @@ export function start(): boolean {
       trigger: section,
       start: "top 75%",
       endTrigger: "#reassemble",
-      end: "bottom 40%",
+      end: "bottom bottom",
       scrub: 1,
     },
     onUpdate: () => {
@@ -80,14 +87,16 @@ export function start(): boolean {
     },
   });
 
-  // On phones the hub sits in a band at the top, so a chapter becomes active as its text comes into
-  // view below the band; on wide screens, when it reaches the middle of the screen.
-  const phone = window.matchMedia("(max-width: 1023px)").matches;
+  // On phones and tablets the hub sits in a band at the top, so the chapter being read is the one
+  // crossing a line just below the band; on wide screens, the one crossing the middle of the screen.
+  // Start and end use the same line, so two chapters are never active at once (review B1).
+  const narrow = window.matchMedia("(max-width: 1023px)").matches;
+  const line = () => (narrow ? `${Math.round(64 + still.offsetHeight + 24)}px` : "center");
   for (const id of MODULE_IDS) {
     ScrollTrigger.create({
       trigger: `#${id}`,
-      start: phone ? "top 80%" : "top center",
-      end: phone ? "bottom 40%" : "bottom center",
+      start: () => `top ${line()}`,
+      end: () => `bottom ${line()}`,
       onToggle: (self) => {
         if (self.isActive) active = id;
         else if (active === id) active = null;

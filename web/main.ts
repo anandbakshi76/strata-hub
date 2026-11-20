@@ -35,7 +35,9 @@ function startMotion(doc: Document): void {
   if (!view || typeof view.matchMedia !== "function") return;
   if (view.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const probe = doc.createElement("canvas");
-  if (!(probe.getContext("webgl2") ?? probe.getContext("webgl"))) return;
+  const gl = probe.getContext("webgl2") ?? probe.getContext("webgl");
+  if (!gl) return;
+  gl.getExtension("WEBGL_lose_context")?.loseContext();
   import("./scene/start").then((m) => m.start()).catch(() => undefined);
 }
 
