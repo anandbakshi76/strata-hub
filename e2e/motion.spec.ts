@@ -18,6 +18,7 @@ test.describe("with WebGL and motion", () => {
     page.on("pageerror", (e) => errors.push(e.message));
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
+    await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
     await expect(page.locator("#inside .still img")).toBeHidden();
     for (const sel of ["#lights", "#climate", "#security", "#energy", "#reassemble", "#faq"]) {
@@ -32,7 +33,9 @@ test.describe("with WebGL and motion", () => {
   }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
+    await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+    await page.evaluate(() => window.scrollTo(0, 0)); // back to the top: the hub is together
     await expect(inside(page)).toHaveAttribute("data-explode", "0");
 
     for (const id of ["lights", "climate", "security", "energy"]) {
@@ -59,6 +62,7 @@ test.describe("with WebGL and motion", () => {
   }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
+    await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
     await scrollTo(page, "#climate");
     await page.waitForTimeout(400);
@@ -72,6 +76,7 @@ test.describe("with WebGL and motion", () => {
   test("on wide screens a callout beside the hub names the active module", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
+    await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
     await scrollTo(page, "#climate");
     await expect(page.locator("#inside .callout")).toBeVisible();
@@ -83,6 +88,7 @@ test.describe("with WebGL and motion", () => {
   }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
+    await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
     await scrollTo(page, "#energy");
     await page.waitForTimeout(1200);
@@ -105,6 +111,7 @@ test.describe("on phones and tablets (review B1, S3)", () => {
     }) => {
       await page.setViewportSize({ width, height: width === 375 ? 800 : 1024 });
       await page.goto("/");
+      await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
       await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
       for (const id of ["lights", "climate", "security", "energy"]) {
         // Put the chapter's story just below the band at the top, where it is read.

@@ -107,7 +107,7 @@ The sections a visitor sees (INTENT "Constraints: key screens", A9):
 
 | What goes wrong | What should happen |
 |-----------------|--------------------|
-| The device has no WebGL, or the 3D fails to load | Show still images of the assembled and exploded hub, self-made drawings matching the model (changed 20 November 2026, approved by Anand Bakshi), and scroll normally. Nothing is hidden. (A10) |
+| The device has no WebGL, or the 3D fails to load | Show still images of the assembled and exploded hub, rendered from our own model by `npm run stills` (changed again 20 November 2026 at the phase 3 design critique, approved by Anand Bakshi: the hand-drawn stills did not match the model), and scroll normally. Nothing is hidden. (A10) |
 | The visitor prefers reduced motion | No scroll-driven motion: the still images are shown and sections appear in their final state. (A10, INTENT "Constraints") |
 | JavaScript is off | The page reads top to bottom as plain content; the form shows "Turn on JavaScript to register interest." (A2) |
 | The 3D model is still loading | The hero shows the still image of the hub in the same place and size, so nothing moves when the model is ready. (Assumed) |

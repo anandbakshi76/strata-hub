@@ -8,6 +8,7 @@ test("frame rate while scrolling the 3D section (acceptance test 4)", async ({ p
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
   await page.goto("/");
+  await page.mouse.wheel(0, 300); // the 3D loads on the first scroll
   await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 30_000 });
 
   const result = await page.evaluate(async () => {

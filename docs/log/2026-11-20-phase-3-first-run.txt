@@ -1,0 +1,414 @@
+
+Running 6 tests using 1 worker
+
+  x  1 e2e\seo.spec.ts:8:1 › the page has a title, a description, sharing tags and a canonical link (6.5s)
+  x  2 e2e\seo.spec.ts:22:1 › robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page (36ms)
+JS files: 2, 644 KB raw, 177 KB gzip
+  ok 3 e2e\seo.spec.ts:40:1 › the built JavaScript and model stay under 600 KB compressed (SPEC 10) (17ms)
+  ok 4 e2e\seo.spec.ts:51:1 › layout shift stays under 0.1 while the page loads and scrolls (3.1s)
+  x  5 e2e\seo.spec.ts:70:1 › a Content Security Policy allows only the site's own files and blocks form sending (1.0m)
+  x  6 e2e\seo.spec.ts:92:1 › touch targets: buttons and fields at least 44 px tall, links at least 24 px (WCAG 2.2) (1.6s)
+
+
+  1) e2e\seo.spec.ts:8:1 › the page has a title, a description, sharing tags and a canonical link ──
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected: "Strata: one hub for every room, built from modules"
+    Received: "Strata Hub"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        13 × locator resolved to <html lang="en" class="js">…</html>
+           - unexpected value "Strata Hub"
+
+
+       8 | test("the page has a title, a description, sharing tags and a canonical link", async ({ page }) => {
+       9 |   await page.goto("/");
+    > 10 |   await expect(page).toHaveTitle("Strata: one hub for every room, built from modules");
+         |                      ^
+      11 |   const meta = (sel: string) => page.locator(sel).getAttribute("content");
+      12 |   expect((await meta('meta[name="description"]'))?.length ?? 0).toBeGreaterThan(70);
+      13 |   expect((await meta('meta[name="description"]'))?.length ?? 0).toBeLessThan(170);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\seo.spec.ts:10:22
+
+    Error Context: test-results\seo-the-page-has-a-title-a-7d927-g-tags-and-a-canonical-link\error-context.md
+
+  2) e2e\seo.spec.ts:22:1 › robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "User-agent: *"
+    Received string:    "<!doctype html>
+    <html lang=\"en\">
+      <head>
+        <meta charset=\"utf-8\" />
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+        <title>Strata Hub</title>
+        <link
+          rel=\"icon\"
+          href=\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%231c1917%27/%3E%3Crect x=%273%27 y=%276%27 width=%2710%27 height=%272%27 fill=%27%23c2410c%27/%3E%3C/svg%3E\"
+        />
+        <script type=\"module\" crossorigin src=\"/assets/index-DHDPQNUR.js\"></script>
+        <link rel=\"stylesheet\" crossorigin href=\"/assets/index-DSBCZGi5.css\">
+      </head>
+      <body>
+        <a class=\"skip-link\" href=\"#app\">Skip to content</a>·
+        <header class=\"site-header\">
+          <a class=\"logo\" href=\"#top\">Strata</a>
+          <nav aria-label=\"Main\">
+            <button class=\"menu-button\" type=\"button\" aria-expanded=\"false\" aria-controls=\"nav-links\">
+              Menu
+            </button>
+            <div class=\"nav-links\" id=\"nav-links\">
+              <a href=\"#inside\">Modules</a>
+              <a href=\"#bundles\">Bundles</a>
+              <a href=\"#faq\">FAQ</a>
+            </div>
+            <a class=\"button\" href=\"#register\">Register interest</a>
+          </nav>
+        </header>·
+        <main id=\"app\">
+          <section id=\"top\" class=\"hero\" aria-labelledby=\"hero-title\">
+            <div class=\"hero-text\">
+              <h1 id=\"hero-title\">One hub. Every room.</h1>
+              <p class=\"lede\">
+                Strata is a smart home hub built from modules that snap together. Start with light. Add
+                climate, security and energy when you're ready.
+              </p>
+              <a class=\"button\" href=\"#register\">Register interest</a>
+            </div>
+            <figure class=\"still\">
+              <img
+                src=\"data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20520%20420'%20width='520'%20height='420'%3e%3cellipse%20cx='260'%20cy='350'%20rx='190'%20ry='34'%20fill='%231c1917'%20opacity='.08'/%3e%3cpolygon%20points='70,250%20260,340%20450,250%20450,276%20260,366%2070,276'%20fill='%23a8a29e'/%3e%3cpolygon%20points='70,250%20260,160%20450,250%20260,340'%20fill='%23e7e5e4'/%3e%3cpolygon%20points='90,226%20260,306%20430,226%20430,248%20260,328%2090,248'%20fill='%2378716c'/%3e%3cpolygon%20points='90,226%20260,146%20430,226%20260,306'%20fill='%23d6d3d1'/%3e%3cline%20x1='175'%20y1='266'%20x2='260'%20y2='306'%20stroke='%23c2410c'%20stroke-width='3'/%3e%3cpolygon%20points='90,204%20260,284%20430,204%20430,226%20260,306%2090,226'%20fill='%23292524'/%3e%3cpolygon%20points='90,204%20260,124%20430,204%20260,284'%20fill='%2344403c'/%3e%3cpolygon%20points='90,182%20260,262%20430,182%20430,204%20260,284%2090,204'%20fill='%2378716c'/%3e%3cpolygon%20points='90,182%20260,102%20430,182%20260,262'%20fill='%23a8a29e'/%3e%3cpolygon%20points='90,160%20260,240%20430,160%20430,182%20260,262%2090,182'%20fill='%23d6d3d1'/%3e%3cpolygon%20points='90,160%20260,80%20430,160%20260,240'%20fill='%23f5f5f4'/%3e%3ccircle%20cx='260'%20cy='160'%20r='10'%20fill='%23fafaf9'%20stroke='%23d6d3d1'%20stroke-width='2'/%3e%3c/svg%3e\"
+                width=\"520\"
+                height=\"420\"
+                alt=\"The Strata hub, assembled: a low square base with four module plates stacked on top.\"
+              />
+            </figure>
+          </section>·
+          <section id=\"inside\" class=\"inside\" aria-labelledby=\"inside-title\">
+            <h2 id=\"inside-title\">Scroll to look inside</h2>·
+            <div class=\"inside-grid\">
+              <div class=\"chapters\">
+                <article id=\"lights\" class=\"chapter\" aria-labelledby=\"lights-title\">
+                  <h3 id=\"lights-title\">Lights</h3>
+                  <p>
+                    Turns the lights on as you walk in and dims them as the evening comes. Set a scene
+                    once and every room follows it.
+                  </p>
+                  <dl class=\"specs\">
+                    <div>
+                      <dt>Lights per hub</dt>
+                      <dd>Up to 50</dd>
+                    </div>
+                    <div>
+                      <dt>Works with</dt>
+                      <dd>Matter and Zigbee</dd>
+                    </div>
+                    <div>
+                      <dt>Response time</dt>
+                      <dd>Under 100 ms</dd>
+                    </div>
+                  </dl>
+                </article>·
+                <article id=\"climate\" class=\"chapter\" aria-labelledby=\"climate-title\">
+                  <h3 id=\"climate-title\">Climate</h3>
+                  <p>
+                    Learns when you're home and keeps each room at the temperature you set, within 0.5
+                    °C. No schedules to program.
+                  </p>
+                  <dl class=\"specs\">
+                    <div>
+                      <dt>Temperature range</dt>
+                      <dd>5 to 35 °C</dd>
+                    </div>
+                    <div>
+                      <dt>Humidity sensing</dt>
+                      <dd>0 to 100%</dd>
+                    </div>
+                    <div>
+                      <dt>Power</dt>
+                      <dd>Battery-free, from the hub</dd>
+                    </div>
+                  </dl>
+                </article>·
+                <article id=\"security\" class=\"chapter\" aria-labelledby=\"security-title\">
+                  <h3 id=\"security-title\">Security</h3>
+                  <p>
+                    Knows when a door opens or the house goes quiet when it shouldn't. Alerts reach your
+                    phone in seconds, and recordings stay at home.
+                  </p>
+                  <dl class=\"specs\">
+                    <div>
+                      <dt>Door and window sensors</dt>
+                      <dd>Up to 30</dd>
+                    </div>
+                    <div>
+                      <dt>Alert time</dt>
+                      <dd>Under 3 seconds</dd>
+                    </div>
+                    <div>
+                      <dt>Video storage</dt>
+                      <dd>64 GB, on the hub</dd>
+                    </div>
+                  </dl>
+                </article>·
+                <article id=\"energy\" class=\"chapter\" aria-labelledby=\"energy-title\">
+                  <h3 id=\"energy-title\">Energy</h3>
+                  <p>
+                    Shows what each circuit uses as it happens, and runs the big appliances when power
+                    is cheaper.
+                  </p>
+                  <dl class=\"specs\">
+                    <div>
+                      <dt>Circuits measured</dt>
+                      <dd>Up to 16</dd>
+                    </div>
+                    <div>
+                      <dt>Reading interval</dt>
+                      <dd>Every 2 seconds</dd>
+                    </div>
+                    <div>
+                      <dt>Tariff aware</dt>
+                      <dd>Yes</dd>
+                    </div>
+                  </dl>
+                </article>
+                <p id=\"reassemble\" class=\"reassemble\">
+                  Start with one module. Add the rest when you're ready.
+                </p>
+              </div>
+              <figure class=\"still\">
+                <img
+                  src=\"data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20420%20600'%20width='420'%20height='600'%3e%3cg%3e%3cpolygon%20points='40,110%20210,190%20380,110%20380,132%20210,212%2040,132'%20fill='%23d6d3d1'/%3e%3cpolygon%20points='40,110%20210,30%20380,110%20210,190'%20fill='%23f5f5f4'/%3e%3ccircle%20cx='210'%20cy='110'%20r='9'%20fill='%23fafaf9'%20stroke='%23d6d3d1'%20stroke-width='2'/%3e%3c/g%3e%3cg%3e%3cpolygon%20points='40,230%20210,310%20380,230%20380,252%20210,332%2040,252'%20fill='%2378716c'/%3e%3cpolygon%20points='40,230%20210,150%20380,230%20210,310'%20fill='%23a8a29e'/%3e%3c/g%3e%3cg%3e%3cpolygon%20points='40,350%20210,430%20380,350%20380,372%20210,452%2040,372'%20fill='%23292524'/%3e%3cpolygon%20points='40,350%20210,270%20380,350%20210,430'%20fill='%2357534e'/%3e%3c/g%3e%3cg%3e%3cpolygon%20points='40,470%20210,550%20380,470%20380,492%20210,572%2040,492'%20fill='%2378716c'/%3e%3cpolygon%20points='40,470%20210,390%20380,470%20210,550'%20fill='%23d6d3d1'/%3e%3cline%20x1='125'%20y1='510'%20x2='210'%20y2='550'%20stroke='%23fb923c'%20stroke-width='3'/%3e%3c/g%3e%3c/svg%3e\"
+                  width=\"420\"
+                  height=\"600\"
+                  alt=\"The hub pulled apart into its four module plates, stacked one above the other: lights at the top, then climate, security and energy.\"
+                />
+              </figure>
+            </div>
+          </section>·
+          <section id=\"bundles\" class=\"bundles\" aria-labelledby=\"bundles-title\">
+            <h2 id=\"bundles-title\">Choose your bundle</h2>
+            <div class=\"cards\">
+              <article class=\"card\" aria-labelledby=\"b-starter\">
+                <h3 id=\"b-starter\">Starter</h3>
+                <p class=\"price\">$199</p>
+                <ul>
+                  <li class=\"yes\">Hub: included</li>
+                  <li class=\"yes\">Lights: included</li>
+                  <li class=\"no\">Climate: not included</li>
+                  <li class=\"no\">Security: not included</li>
+                  <li class=\"no\">Energy: not included</li>
+                </ul>
+                <a class=\"button secondary\" href=\"#register\">Register interest</a>
+              </article>
+              <article class=\"card\" aria-labelledby=\"b-home\">
+                <p class=\"tag\">Recommended</p>
+                <h3 id=\"b-home\">Home</h3>
+                <p class=\"price\">$349</p>
+                <ul>
+                  <li class=\"yes\">Hub: included</li>
+                  <li class=\"yes\">Lights: included</li>
+                  <li class=\"yes\">Climate: included</li>
+                  <li class=\"yes\">Security: included</li>
+                  <li class=\"no\">Energy: not included</li>
+                </ul>
+                <a class=\"button\" href=\"#register\">Register interest</a>
+              </article>
+              <article class=\"card\" aria-labelledby=\"b-complete\">
+                <h3 id=\"b-complete\">Complete</h3>
+                <p class=\"price\">$499</p>
+                <ul>
+                  <li class=\"yes\">Hub: included</li>
+                  <li class=\"yes\">Lights: included</li>
+                  <li class=\"yes\">Climate: included</li>
+                  <li class=\"yes\">Security: included</li>
+                  <li class=\"yes\">Energy: included</li>
+                </ul>
+                <a class=\"button secondary\" href=\"#register\">Register interest</a>
+              </article>
+            </div>
+          </section>·
+          <section id=\"register\" class=\"register\" aria-labelledby=\"register-title\">
+            <h2 id=\"register-title\">Hear when Strata launches</h2>
+            <p>One email at launch. Nothing else.</p>
+            <form novalidate>
+              <!-- Shown until main.ts removes it, so it shows whenever JavaScript is off. -->
+              <p class=\"notice\" data-no-js>Turn on JavaScript to register interest.</p>
+              <!-- Disabled until web/form.ts runs: with JavaScript off nothing can be typed or sent, and Enter can't submit (rule 4). -->
+              <fieldset class=\"fields\" disabled>
+                <div class=\"field\">
+                  <label for=\"email\">Email</label>
+                  <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required />
+                  <p class=\"error\" id=\"email-error\" hidden>
+                    <svg
+                      aria-hidden=\"true\"
+                      width=\"20\"
+                      height=\"20\"
+                      viewBox=\"0 0 24 24\"
+                      fill=\"none\"
+                      stroke=\"currentColor\"
+                      stroke-width=\"1.5\"
+                      stroke-linecap=\"round\"
+                      stroke-linejoin=\"round\"
+                    >
+                      <circle cx=\"12\" cy=\"12\" r=\"10\" />
+                      <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\" />
+                      <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\" /></svg
+                    ><span></span>
+                  </p>
+                </div>
+                <div class=\"field\">
+                  <label for=\"module\">Which module interests you most? (optional)</label>
+                  <select id=\"module\" name=\"module\">
+                    <option>Not sure yet</option>
+                    <option>Lights</option>
+                    <option>Climate</option>
+                    <option>Security</option>
+                    <option>Energy</option>
+                  </select>
+                </div>
+                <div class=\"field check\">
+                  <input id=\"consent\" name=\"consent\" type=\"checkbox\" required />
+                  <label for=\"consent\"
+                    >Email me about the Strata launch. I can unsubscribe at any time.</label
+                  >
+                  <p class=\"error\" id=\"consent-error\" hidden>
+                    <svg
+                      aria-hidden=\"true\"
+                      width=\"20\"
+                      height=\"20\"
+                      viewBox=\"0 0 24 24\"
+                      fill=\"none\"
+                      stroke=\"currentColor\"
+                      stroke-width=\"1.5\"
+                      stroke-linecap=\"round\"
+                      stroke-linejoin=\"round\"
+                    >
+                      <circle cx=\"12\" cy=\"12\" r=\"10\" />
+                      <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\" />
+                      <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\" /></svg
+                    ><span></span>
+                  </p>
+                </div>
+                <!-- type=\"button\" on purpose: with JavaScript off it can never submit; web/form.ts handles the click. -->
+                <button class=\"button\" type=\"button\">Register interest</button>
+              </fieldset>
+              <p class=\"form-status\" role=\"status\"></p>
+              <p class=\"privacy\">
+                We only use your email to tell you about the Strata launch. Nothing is sent in this
+                demo.
+              </p>
+            </form>
+          </section>·
+          <section id=\"faq\" class=\"faq\" aria-labelledby=\"faq-title\">
+            <h2 id=\"faq-title\">Questions</h2>
+            <details>
+              <summary>Is there a subscription?</summary>
+              <p>No. Everything works without a monthly fee.</p>
+            </details>
+            <details>
+              <summary>What does Strata work with?</summary>
+              <p>
+                Lights and plugs that use Matter or Zigbee, and the four Strata modules. The app makes
+                setup easier, but the hub runs without it.
+              </p>
+            </details>
+            <details>
+              <summary>What happens to my data?</summary>
+              <p>
+                It stays on the hub in your home. Nothing goes to the cloud unless you turn on remote
+                access.
+              </p>
+            </details>
+            <details>
+              <summary>When does it ship?</summary>
+              <p>
+                Strata is a fictional product made for a design pilot, so there is no ship date.
+                Registering shows how the launch page works.
+              </p>
+            </details>
+            <details>
+              <summary>Can I return it?</summary>
+              <p>Yes, within 30 days, in its box, for a full refund.</p>
+            </details>
+            <details>
+              <summary>How is it powered?</summary>
+              <p>
+                The hub plugs into a wall socket. The modules take their power from the hub, so there
+                are no batteries to change.
+              </p>
+            </details>
+          </section>
+        </main>·
+        <footer class=\"site-footer\">
+          <p>Strata is a fictional product made for a design pilot.</p>
+          <a href=\"#top\">Back to top</a>
+        </footer>·
+      </body>
+    </html>
+    "
+
+      26 |   expect(robots.ok()).toBe(true);
+      27 |   const r = await robots.text();
+    > 28 |   expect(r).toContain("User-agent: *");
+         |             ^
+      29 |   expect(r).toMatch(/Sitemap: https:\/\/.+\/sitemap\.xml/);
+      30 |   const sitemap = await request.get("/sitemap.xml");
+      31 |   expect(sitemap.ok()).toBe(true);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\seo.spec.ts:28:13
+
+    Error Context: test-results\seo-robots-txt-allows-craw-0a8c0--sitemap-xml-lists-the-page\error-context.md
+
+  3) e2e\seo.spec.ts:70:1 › a Content Security Policy allows only the site's own files and blocks form sending 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.getAttribute: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('meta[http-equiv="Content-Security-Policy"]')
+
+
+      78 |   const csp = await page
+      79 |     .locator('meta[http-equiv="Content-Security-Policy"]')
+    > 80 |     .getAttribute("content");
+         |      ^
+      81 |   expect(csp).toContain("default-src 'self'");
+      82 |   expect(csp).toContain("script-src 'self'");
+      83 |   expect(csp).toContain("form-action 'none'");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\seo.spec.ts:80:6
+
+    Error Context: test-results\seo-a-Content-Security-Pol-fc933-les-and-blocks-form-sending\error-context.md
+
+  4) e2e\seo.spec.ts:92:1 › touch targets: buttons and fields at least 44 px tall, links at least 24 px (WCAG 2.2) 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "A Strata 22",
+    +   "A Back to top 22",
+    + ]
+
+      109 |     return out;
+      110 |   });
+    > 111 |   expect(small).toEqual([]);
+          |                 ^
+      112 | });
+      113 |
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\seo.spec.ts:111:17
+
+    Error Context: test-results\seo-touch-targets-buttons--9ad0b-ks-at-least-24-px-WCAG-2-2-\error-context.md
+
+  4 failed
+    e2e\seo.spec.ts:8:1 › the page has a title, a description, sharing tags and a canonical link ───
+    e2e\seo.spec.ts:22:1 › robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page 
+    e2e\seo.spec.ts:70:1 › a Content Security Policy allows only the site's own files and blocks form sending 
+    e2e\seo.spec.ts:92:1 › touch targets: buttons and fields at least 44 px tall, links at least 24 px (WCAG 2.2) 
+  2 passed (1.3m)

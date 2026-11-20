@@ -13,6 +13,12 @@ export default defineConfig({
     // Headless Chrome needs software WebGL (SwiftShader) turned on for the 3D tests.
     launchOptions: { args: ["--enable-unsafe-swiftshader", "--use-angle=swiftshader"] },
   },
+  // Chrome runs every test; Edge runs the page and security checks too (SPEC 12). Firefox and
+  // Safari (WebKit) need browser downloads, so they are checked by hand at release.
+  projects: [
+    { name: "chrome", use: { channel: "chrome" } },
+    { name: "edge", use: { channel: "msedge" }, testMatch: /(smoke|seo).spec.ts/ },
+  ],
   webServer: {
     command: "npm run build && npx vite preview --port 4173 --strictPort",
     url: "http://localhost:4173",

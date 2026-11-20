@@ -11,8 +11,18 @@ export interface HubScene {
   dispose(): void;
 }
 
-export function createHubScene(canvas: HTMLCanvasElement, container: HTMLElement): HubScene {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+export function createHubScene(
+  canvas: HTMLCanvasElement,
+  container: HTMLElement,
+  options: { preserveDrawingBuffer?: boolean } = {},
+): HubScene {
+  // preserveDrawingBuffer is only for scripts/render-stills.ts, which reads the pixels back.
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    preserveDrawingBuffer: options.preserveDrawingBuffer ?? false,
+  });
   const phone = window.matchMedia("(max-width: 767px)").matches;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, phone ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -31,7 +41,7 @@ export function createHubScene(canvas: HTMLCanvasElement, container: HTMLElement
   scene.add(hub.group);
   const shadow = new THREE.Mesh(
     new THREE.CircleGeometry(1.9, 48),
-    new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.28 }),
+    new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.16 }),
   );
   shadow.rotation.x = -Math.PI / 2;
   shadow.position.y = 0.002;

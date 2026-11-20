@@ -106,6 +106,25 @@ export function start(): boolean {
     });
   }
 
+  // After the reassembly, a light layer fades in so the page turns light again (DESIGN 7).
+  const fade = document.createElement("div");
+  fade.className = "inside-fade";
+  fade.setAttribute("aria-hidden", "true");
+  section.prepend(fade);
+  section.dataset.light = "0";
+  ScrollTrigger.create({
+    trigger: "#reassemble",
+    start: "top 25%",
+    endTrigger: section,
+    end: "bottom 60%",
+    scrub: true,
+    onUpdate: (self) => {
+      const light = Math.round(self.progress * 100) / 100;
+      section.style.setProperty("--light", String(light));
+      section.dataset.light = String(light);
+    },
+  });
+
   document.fonts.ready.then(() => ScrollTrigger.refresh());
   window.addEventListener("load", () => ScrollTrigger.refresh());
   return true;

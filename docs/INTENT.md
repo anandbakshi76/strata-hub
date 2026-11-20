@@ -84,3 +84,5 @@ Recorded on 20 November 2026, approved by Anand Bakshi at the phase 2b review. R
 - **Key screens:** "Hero with the 3D hub" is built as the hero with a still of the hub; the 3D hub appears in the look-inside section, where it comes apart. SPEC 5.1 and 8 updated.
 - **Stills:** the fallback stills are self-made drawings matching the model, not renders of it. SPEC 9 updated.
 - **Phones:** the 3D hub is a band at the top with a label naming the module, not a full-screen canvas. DESIGN.md 8 updated.
+
+Recorded on 20 November 2026 at the phase 3 design critique, approved by Anand Bakshi: the stills are now rendered from the 3D model itself (the hand-drawn ones did not match it), which returns to the original SPEC 9 wording.

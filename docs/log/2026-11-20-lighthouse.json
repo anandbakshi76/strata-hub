@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-20T04:28:41.019Z",
+  "profile": "Lighthouse default mobile: Moto G Power emulation, 4x CPU slowdown, simulated slow 4G",
+  "runs": [
+    {
+      "lcp": 1.589,
+      "cls": 0.001,
+      "tbt": 106,
+      "performance": 99,
+      "accessibility": 100,
+      "seo": 100,
+      "bestPractices": 100
+    },
+    {
+      "lcp": 1.584,
+      "cls": 0.001,
+      "tbt": 142,
+      "performance": 98,
+      "accessibility": 100,
+      "seo": 100,
+      "bestPractices": 100
+    },
+    {
+      "lcp": 1.586,
+      "cls": 0.001,
+      "tbt": 113,
+      "performance": 99,
+      "accessibility": 100,
+      "seo": 100,
+      "bestPractices": 100
+    }
+  ],
+  "worst": {
+    "lcp": 1.589,
+    "cls": 0.001,
+    "accessibility": 100
+  },
+  "targets": {
+    "lcpSecondsBelow": 2.5,
+    "accessibilityAtLeast": 95,
+    "clsBelow": 0.1
+  }
+}

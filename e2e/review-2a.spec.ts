@@ -68,12 +68,14 @@ test("N1: an open FAQ shows a minus, not a rotated plus (DESIGN.md 5)", async ({
 test("N6: the tick and dash in the bundle lists are hidden from screen readers", async ({
   page,
 }) => {
+  // Since the phase 3 critique they are drawn SVG icons (not text glyphs), each aria-hidden.
   await page.goto("/");
-  const content = await page
-    .locator("#bundles li.yes")
-    .first()
-    .evaluate((el) => getComputedStyle(el, "::before").content);
-  expect(content).toMatch(/\/\s*""$/);
+  const icons = page.locator("#bundles li svg");
+  await expect(icons).toHaveCount(12);
+  const hidden = await icons.evaluateAll((els) =>
+    els.every((e) => e.getAttribute("aria-hidden") === "true"),
+  );
+  expect(hidden).toBe(true);
 });
 
 test.describe("N4: reduced motion", () => {

@@ -89,6 +89,13 @@ describe("content matches content.ts", async () => {
     });
   });
 
+  it("says every bundle includes the hub, on the page and in CONTENT.md (review S2, rule 7)", () => {
+    expect(content.bundlesNote).toBe("Every bundle includes the hub.");
+    expect(doc.querySelector("#bundles")?.textContent).toContain(content.bundlesNote);
+    const approved = readFileSync(new URL("../docs/CONTENT.md", import.meta.url), "utf8");
+    expect(approved).toContain(content.bundlesNote);
+  });
+
   it("shows the six FAQ questions and answers (SPEC 4.6, A8)", () => {
     expect(content.faq).toHaveLength(6);
     expect(doc.querySelectorAll("#faq details")).toHaveLength(6);

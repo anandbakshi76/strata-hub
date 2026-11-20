@@ -3,7 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Strata Hub</title>
+    <title>Strata: one hub for every room, built from modules</title>
+    <meta
+      name="description"
+      content="Strata is a smart home hub built from modules that snap together: lights, climate, security and energy. A fictional product made for a design pilot."
+    />
+    <link rel="canonical" href="https://strata-hub.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Strata: one hub for every room" />
+    <meta
+      property="og:description"
+      content="A smart home hub built from modules that snap together. Start with light, add the rest when you are ready."
+    />
+    <meta property="og:url" content="https://strata-hub.netlify.app/" />
+    <meta property="og:image" content="https://strata-hub.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="The Strata hub, assembled, beside the headline One hub. Every room."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#fafaf9" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%231c1917%27/%3E%3Crect x=%273%27 y=%276%27 width=%2710%27 height=%272%27 fill=%27%23c2410c%27/%3E%3C/svg%3E"
@@ -26,14 +47,17 @@
           <a href="#bundles">Bundles</a>
           <a href="#faq">FAQ</a>
         </div>
-        <a class="button" href="#register">Register interest</a>
+        <a class="button secondary" href="#register">Register interest</a>
       </nav>
     </header>
 
     <main id="app">
       <section id="top" class="hero" aria-labelledby="hero-title">
         <div class="hero-text">
-          <h1 id="hero-title">One hub. Every room.</h1>
+          <h1 id="hero-title">
+            <span class="line"><span>One hub.</span></span>
+            <span class="line"><span>Every room.</span></span>
+          </h1>
           <p class="lede">
             Strata is a smart home hub built from modules that snap together. Start with light. Add
             climate, security and energy when you're ready.
@@ -42,7 +66,7 @@
         </div>
         <figure class="still">
           <img
-            src="./assets/stills/hub-assembled.svg"
+            src="./assets/stills/hub-assembled.webp"
             width="520"
             height="420"
             alt="The Strata hub, assembled: a low square base with four module plates stacked on top."
@@ -148,7 +172,7 @@
           </div>
           <figure class="still">
             <img
-              src="./assets/stills/hub-exploded.svg"
+              src="./assets/stills/hub-exploded.webp"
               width="420"
               height="600"
               alt="The hub pulled apart into its four module plates, stacked one above the other: lights at the top, then climate, security and energy."
@@ -159,16 +183,69 @@
 
       <section id="bundles" class="bundles" aria-labelledby="bundles-title">
         <h2 id="bundles-title">Choose your bundle</h2>
+        <p class="bundles-note">Every bundle includes the hub.</p>
         <div class="cards">
           <article class="card" aria-labelledby="b-starter">
             <h3 id="b-starter">Starter</h3>
             <p class="price">$199</p>
             <ul>
-              <li class="yes">Hub: included</li>
-              <li class="yes">Lights: included</li>
-              <li class="no">Climate: not included</li>
-              <li class="no">Security: not included</li>
-              <li class="no">Energy: not included</li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Lights: included
+              </li>
+              <li class="no">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="6" y1="12" x2="18" y2="12" /></svg
+                >Climate: not included
+              </li>
+              <li class="no">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="6" y1="12" x2="18" y2="12" /></svg
+                >Security: not included
+              </li>
+              <li class="no">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="6" y1="12" x2="18" y2="12" /></svg
+                >Energy: not included
+              </li>
             </ul>
             <a class="button secondary" href="#register">Register interest</a>
           </article>
@@ -177,11 +254,65 @@
             <h3 id="b-home">Home</h3>
             <p class="price">$349</p>
             <ul>
-              <li class="yes">Hub: included</li>
-              <li class="yes">Lights: included</li>
-              <li class="yes">Climate: included</li>
-              <li class="yes">Security: included</li>
-              <li class="no">Energy: not included</li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Lights: included
+              </li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Climate: included
+              </li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Security: included
+              </li>
+              <li class="no">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="6" y1="12" x2="18" y2="12" /></svg
+                >Energy: not included
+              </li>
             </ul>
             <a class="button" href="#register">Register interest</a>
           </article>
@@ -189,11 +320,66 @@
             <h3 id="b-complete">Complete</h3>
             <p class="price">$499</p>
             <ul>
-              <li class="yes">Hub: included</li>
-              <li class="yes">Lights: included</li>
-              <li class="yes">Climate: included</li>
-              <li class="yes">Security: included</li>
-              <li class="yes">Energy: included</li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Lights: included
+              </li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Climate: included
+              </li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Security: included
+              </li>
+              <li class="yes">
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                >Energy: included
+              </li>
             </ul>
             <a class="button secondary" href="#register">Register interest</a>
           </article>

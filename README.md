@@ -9,5 +9,7 @@ A scroll-driven launch page for Strata, a fictional modular smart home hub whose
 - `npm run check` runs every check: format, lint, types, unit tests and browser tests (Playwright with axe, against the production build, using the installed Chrome).
 - `npm run build` writes the static site to `dist/`.
 - `npm run perf` measures the frame rate in the 3D section (Pixel 5 profile, 4x CPU slowdown).
+- `npm run lighthouse` runs Lighthouse on the built site (mobile, three runs) and saves the result in `docs/log/`.
+- `npm run stills` renders the fallback stills from the 3D model.
 
 See `docs/STATUS.md` for what is built so far, and `docs/PLAN.md` for the phases.

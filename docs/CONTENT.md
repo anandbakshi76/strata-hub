@@ -48,6 +48,8 @@ Reassemble line: Start with one module. Add the rest when you're ready.
 
 ## Bundles
 
+Every bundle includes the hub. (Added 20 November 2026 after the phase 3 review, approved by Anand Bakshi.)
+
 | Bundle | Price | Includes |
 |---|---|---|
 | Starter | $199 | Hub, lights |

@@ -310,7 +310,7 @@ h3 {
 }
 
 .chapter h3 {
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(48px, 6vw, 88px);
   font-weight: 800;
   color: var(--stone-200);
 }
@@ -430,20 +430,8 @@ h3 {
   font-size: 16px;
 }
 
-.card li::before {
-  flex: none;
-  width: 20px;
-  text-align: center;
-  font-family: var(--font-mono);
-  content: "\2713" / "";
-}
-
 .card li.no {
   color: var(--stone-600);
-}
-
-.card li.no::before {
-  content: "\2013" / "";
 }
 
 /* Register interest */
@@ -536,7 +524,8 @@ h3 {
 .form-status:not(:empty) {
   margin: var(--space-4) 0 0;
   padding: var(--space-3) var(--space-4);
-  border-left: 3px solid var(--stone-900);
+  border: 1px solid var(--stone-300);
+  border-radius: var(--radius-field);
   background: var(--stone-50);
   font-weight: 500;
 }
@@ -631,7 +620,6 @@ h3 {
   max-width: none;
   height: 34svh;
   background: var(--stone-900);
-  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .inside.has-3d .still canvas {
@@ -714,4 +702,155 @@ h3 {
   .callout::before {
     display: none;
   }
+}
+
+/* Touch targets (WCAG 2.2): the logo is at least 44 px tall and footer links at least 24 px. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+/* Phones and tablets: the chapter still takes the same height as the 3D band, so nothing moves
+   when the 3D arrives after the first scroll (layout shift, PLAN phase 3). */
+@media (max-width: 1023px) {
+  .inside-grid .still {
+    height: 34svh;
+    max-width: none;
+  }
+
+  .inside-grid .still img {
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Impeccable critique fixes, approved 20 November 2026 (docs/log/2026-11-20-phase-3-impeccable-critique.md). */
+
+/* P2: opaque header while the dark section is under it (DESIGN 5 amended). */
+.site-header.over-dark {
+  background: var(--stone-50);
+}
+
+/* P2: the Recommended tag sits on the card's top edge, so every card's rows line up. */
+.card {
+  position: relative;
+}
+
+.card .tag {
+  position: absolute;
+  top: -12px;
+  left: var(--space-6);
+}
+
+.card li svg {
+  flex: none;
+}
+
+.card li.yes svg {
+  color: var(--stone-900);
+}
+
+@media (max-width: 1023px) {
+  .card {
+    max-width: 32rem;
+  }
+}
+
+/* P1: after the hub reassembles, a light layer fades in by opacity so the page turns light again
+   (DESIGN 7). Driven by --light from the scroll timeline; only with the 3D hub on. */
+.inside {
+  position: relative;
+}
+
+/* The same bottom space with or without the 3D, so nothing moves when the 3D starts. */
+.inside {
+  padding-bottom: var(--space-9);
+}
+
+.inside-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--stone-50);
+  opacity: var(--light, 0);
+  pointer-events: none;
+}
+
+.inside > h2,
+.inside-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* N6: the headline rises line by line on load, from an already visible position. */
+h1 .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+h1 .line > span {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  h1 .line > span {
+    animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  h1 .line:nth-child(2) > span {
+    animation-delay: 0.08s;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0.22em);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+/* Browser surfaces in the palette. */
+::selection {
+  background: var(--stone-900);
+  color: var(--stone-50);
+}
+
+input,
+select {
+  caret-color: var(--signal);
+}
+
+/* The pinned hub area and the reassemble line follow the light fade, so no dark box is left
+   behind and the line fades out rather than losing contrast (seen by eye in phase 3). */
+.inside.has-3d .still::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--stone-50);
+  opacity: var(--light, 0);
+  pointer-events: none;
+}
+
+.inside.has-3d .still canvas {
+  position: relative;
+}
+
+.inside.has-3d .reassemble {
+  opacity: calc(1 - var(--light, 0));
+}
+
+.bundles-note {
+  margin: 0;
+  color: var(--stone-600);
 }
