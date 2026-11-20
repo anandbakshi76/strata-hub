@@ -7,7 +7,12 @@ export default defineConfig({
   reporter: "list",
   workers: 1,
   timeout: 60_000,
-  use: { baseURL: "http://localhost:4173", channel: "chrome" },
+  use: {
+    baseURL: "http://localhost:4173",
+    channel: "chrome",
+    // Headless Chrome needs software WebGL (SwiftShader) turned on for the 3D tests.
+    launchOptions: { args: ["--enable-unsafe-swiftshader", "--use-angle=swiftshader"] },
+  },
   webServer: {
     command: "npm run build && npx vite preview --port 4173 --strictPort",
     url: "http://localhost:4173",

@@ -1,0 +1,119 @@
+ FAIL  web/scene/hub.test.ts [ web/scene/hub.test.ts ]
+Error: Cannot find module './hub' imported from D:/LLM_Projects_Learning/projects/01-showcase-site/strata-hub/web/scene/hub.test.ts
+
+Running 6 tests using 1 worker
+
+  x  1 e2e\motion.spec.ts:11:3 › with WebGL and motion › the 3D hub replaces the chapter still and the page has no console errors while scrolling (16.5s)
+  x  2 e2e\motion.spec.ts:30:3 › with WebGL and motion › scrolling explodes the hub, highlights each module and reassembles it; scrolling up reverses it (16.3s)
+  x  3 e2e\motion.spec.ts:57:3 › with WebGL and motion › the hub stays in place (one pinned area) while the chapters scroll past (16.4s)
+  x  4 e2e\motion.spec.ts:72:3 › with WebGL and motion › on wide screens a callout names the active module; on phones it is hidden (gap 21) (16.4s)
+  ok 5 e2e\motion.spec.ts:88:3 › with reduced motion › the stills show, no canvas is made, nothing is pinned and all content reads (2.5s)
+  ok 6 e2e\motion.spec.ts:102:3 › without WebGL › the stills show and no canvas is made (2.5s)
+
+
+  1) e2e\motion.spec.ts:11:3 › with WebGL and motion › the 3D hub replaces the chapter still and the page has no console errors while scrolling 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#inside canvas')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#inside canvas') with timeout 15000ms
+      - waiting for locator('#inside canvas')
+
+
+      19 |     await page.setViewportSize({ width: 1280, height: 900 });
+      20 |     await page.goto("/");
+    > 21 |     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+         |                                                  ^
+      22 |     await expect(page.locator("#inside .still img")).toBeHidden();
+      23 |     for (const sel of ["#lights", "#climate", "#security", "#energy", "#reassemble", "#faq"]) {
+      24 |       await scrollTo(page, sel);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:21:50
+
+    Error Context: test-results\motion-with-WebGL-and-moti-bf0c7-sole-errors-while-scrolling\error-context.md
+
+  2) e2e\motion.spec.ts:30:3 › with WebGL and motion › scrolling explodes the hub, highlights each module and reassembles it; scrolling up reverses it 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#inside canvas')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#inside canvas') with timeout 15000ms
+      - waiting for locator('#inside canvas')
+
+
+      33 |     await page.setViewportSize({ width: 1280, height: 900 });
+      34 |     await page.goto("/");
+    > 35 |     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+         |                                                  ^
+      36 |     await expect(inside(page)).toHaveAttribute("data-explode", "0");
+      37 |
+      38 |     for (const id of ["lights", "climate", "security", "energy"]) {
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:35:50
+
+    Error Context: test-results\motion-with-WebGL-and-moti-7b527-it-scrolling-up-reverses-it\error-context.md
+
+  3) e2e\motion.spec.ts:57:3 › with WebGL and motion › the hub stays in place (one pinned area) while the chapters scroll past 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#inside canvas')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#inside canvas') with timeout 15000ms
+      - waiting for locator('#inside canvas')
+
+
+      60 |     await page.setViewportSize({ width: 1280, height: 900 });
+      61 |     await page.goto("/");
+    > 62 |     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+         |                                                  ^
+      63 |     await scrollTo(page, "#climate");
+      64 |     await page.waitForTimeout(400);
+      65 |     const a = await page.locator("#inside canvas").boundingBox();
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:62:50
+
+    Error Context: test-results\motion-with-WebGL-and-moti-7bdc4-le-the-chapters-scroll-past\error-context.md
+
+  4) e2e\motion.spec.ts:72:3 › with WebGL and motion › on wide screens a callout names the active module; on phones it is hidden (gap 21) 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#inside canvas')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#inside canvas') with timeout 15000ms
+      - waiting for locator('#inside canvas')
+
+
+      75 |     await page.setViewportSize({ width: 1280, height: 900 });
+      76 |     await page.goto("/");
+    > 77 |     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+         |                                                  ^
+      78 |     await scrollTo(page, "#climate");
+      79 |     await expect(page.locator("#inside .callout")).toBeVisible();
+      80 |     await expect(page.locator("#inside .callout")).toContainText("Climate");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:77:50
+
+    Error Context: test-results\motion-with-WebGL-and-moti-a32a1-phones-it-is-hidden-gap-21-\error-context.md
+
+  4 failed
+    e2e\motion.spec.ts:11:3 › with WebGL and motion › the 3D hub replaces the chapter still and the page has no console errors while scrolling 
+    e2e\motion.spec.ts:30:3 › with WebGL and motion › scrolling explodes the hub, highlights each module and reassembles it; scrolling up reverses it 
+    e2e\motion.spec.ts:57:3 › with WebGL and motion › the hub stays in place (one pinned area) while the chapters scroll past 
+    e2e\motion.spec.ts:72:3 › with WebGL and motion › on wide screens a callout names the active module; on phones it is hidden (gap 21) 
+  2 passed (1.4m)
