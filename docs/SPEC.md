@@ -50,7 +50,7 @@ There are no other roles: no sign-in, no admin screen and no content editing on 
 
 The order on the page (A9):
 
-1. **Hero:** the assembled hub in 3D, the headline, one line on what Strata is, and the Register interest button.
+1. **Hero:** a still image of the assembled hub, the headline, one line on what Strata is, and the Register interest button. (Changed 20 November 2026, approved by Anand Bakshi: the 3D hub lives in the look-inside section; a still in the hero keeps the first paint fast, acceptance test 2.)
 2. **Look inside:** a "Scroll to look inside" cue. Scrolling explodes the hub into its four modules.
 3. **Module chapters:** lights, climate, security, energy. As each chapter comes into view, its module is highlighted in the model, with a thin-line callout naming it, its story and its 3 specs.
 4. **Reassemble:** the modules snap back into the hub, with one line: "Start with one module. Add the rest when you're ready."
@@ -96,7 +96,7 @@ In the pilot the form keeps these only in the page until it is closed: they are 
 The sections a visitor sees (INTENT "Constraints: key screens", A9):
 
 - **Header:** logo, links to Modules, Bundles and FAQ, and the Register interest button.
-- **Hero with the 3D hub:** the headline, one line, the button, and the 3D hub (or its still image).
+- **Hero with the hub:** the headline, one line, the button, and the still image of the assembled hub (the 3D hub appears in the look-inside section).
 - **Module story sections:** four chapters, each with a module name, a story of up to 40 words and 3 specs.
 - **Bundles compare:** three cards with name, price, included modules and a button that goes to the form.
 - **Register interest:** the form and its privacy note.
@@ -107,7 +107,7 @@ The sections a visitor sees (INTENT "Constraints: key screens", A9):
 
 | What goes wrong | What should happen |
 |-----------------|--------------------|
-| The device has no WebGL, or the 3D fails to load | Show still images of the assembled and exploded hub, rendered from our own model, and scroll normally. Nothing is hidden. (A10) |
+| The device has no WebGL, or the 3D fails to load | Show still images of the assembled and exploded hub, self-made drawings matching the model (changed 20 November 2026, approved by Anand Bakshi), and scroll normally. Nothing is hidden. (A10) |
 | The visitor prefers reduced motion | No scroll-driven motion: the still images are shown and sections appear in their final state. (A10, INTENT "Constraints") |
 | JavaScript is off | The page reads top to bottom as plain content; the form shows "Turn on JavaScript to register interest." (A2) |
 | The 3D model is still loading | The hero shows the still image of the hub in the same place and size, so nothing moves when the model is ready. (Assumed) |

@@ -97,7 +97,7 @@ Static first: every section is built and passes Playwright without motion, then 
 
 | Moment | What moves | How |
 |--------|-----------|-----|
-| Hero load | The hub fades up 16 px; the headline appears line by line | 600 ms, `power2.out`, once. No other load animation. |
+| Hero load | The headline appears line by line (the hero hub is a still since 20 November 2026) | 600 ms, `power2.out`, once. No other load animation. Not built yet: open for phase 3. |
 | Look inside (the one pinned area) | The canvas stays in place (sticky) while the four chapters scroll past it. The modules separate along the vertical axis; the active module comes forward and its callout appears. | ScrollTrigger with `scrub: 1`, tied to the scroll position, not timed. |
 | Reassemble | The modules snap back together and the background turns light again | The same scrubbed timeline, reversed into place. |
 | Section text | Headline and specs rise 24 px and fade in | 500 ms, `power2.out`, at most 8 items staggered by 80 ms, once per section. |
@@ -115,8 +115,8 @@ Rules:
 
 | Section | Background | Layout (phone → desktop) | Reference |
 |---------|------------|--------------------------|-----------|
-| Hero | Light | Headline above the hub on phones; headline left, hub right on desktop, the headline partly behind the hub | 01 |
-| Look inside and the 4 chapters | Dark | Canvas fills the screen with the chapter text in a panel at the bottom on phones; canvas right two thirds, text left third on desktop | 02, 03, 04 |
+| Hero | Light | Headline above the hub still on phones; headline left, hub still right on desktop | 01 |
+| Look inside and the 4 chapters | Dark | On phones and tablets the canvas is a band at the top (about a third of the screen) with a label naming the active module, and the chapters scroll below it; on desktop the canvas is the right two thirds, text left third (changed 20 November 2026, approved by Anand Bakshi) | 02, 03, 04 |
 | Reassemble | Dark → light | One line, centred | 02 |
 | Bundles | Light | Cards stacked on phones, three across from 1024 px | 05 |
 | Register interest | Light | One column, max-width 32rem | 05 |
