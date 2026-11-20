@@ -54,7 +54,7 @@ Both families are open source (SIL Open Font License) and **self-hosted** as WOF
 
 Rules:
 
-- **The display face is used a few times only:** the hero headline, the four chapter names and the bundles title. Everything else is DM Sans. (refs 01 and 03)
+- **The display face is used a few times only:** the hero headline and the four chapter names (48 to 88 px since 20 November 2026). The bundles title stays at Archivo 700, a heading, not display: it is a utility section and must not compete with the climax (approved 20 November 2026). Everything else is DM Sans. (refs 01 and 03)
 - **Mono only where it carries data:** the 3 specs per module, prices and readings. Not for labels or buttons.
 - **Sentence case everywhere.** No all-caps labels, no tracked-out eyebrows, and no single accented word in a headline.
 - **Line length** 45 to 70 characters for body text (max-width 34rem).
@@ -72,7 +72,7 @@ Rules:
 
 | Component | Rules |
 |-----------|-------|
-| **Header** | Logo on the left, three links (Modules, Bundles, FAQ) and the Register interest button on the right. 64 px tall, `--stone-50` at 92% opacity once you scroll. On phones the links fold into a menu button labelled "Menu"; the Register interest button stays visible. |
+| **Header** | Logo on the left, three links (Modules, Bundles, FAQ) and the Register interest button on the right. 64 px tall, `--stone-50` at 92% opacity once you scroll, and fully opaque while the dark section is under it (approved 20 November 2026: the 92% showed headings through it). Its Register interest button is the outlined one, so the hero's is the only orange button on the first screen. On phones the links fold into a menu button labelled "Menu"; the Register interest button stays visible. |
 | **Primary button** | Pill, `--signal` fill, white DM Sans 500, 48 px tall (44 px minimum touch target), 24 px side padding. Hover and pressed: `--signal-dark`. One primary button per screen. |
 | **Text link** | `--signal` underlined, 2 px offset. |
 | **Callout** (on the 3D model) | A 1 px `--signal-glow` leader line from the module to a label: module name (DM Sans 500) and one spec (Plex Mono). Appears when its chapter is in view. (ref 04) |
@@ -97,7 +97,7 @@ Static first: every section is built and passes Playwright without motion, then 
 
 | Moment | What moves | How |
 |--------|-----------|-----|
-| Hero load | The headline appears line by line (the hero hub is a still since 20 November 2026) | 600 ms, `power2.out`, once. No other load animation. Not built yet: open for phase 3. |
+| Hero load | The headline rises line by line from an already visible position (the hero hub is a still since 20 November 2026) | 600 ms, ease-out, 80 ms stagger, once, CSS only. Never starts transparent. None with reduced motion. |
 | Look inside (the one pinned area) | The canvas stays in place (sticky) while the four chapters scroll past it. The modules separate along the vertical axis; the active module comes forward and its callout appears. | ScrollTrigger with `scrub: 1`, tied to the scroll position, not timed. |
 | Reassemble | The modules snap back together and the background turns light again | The same scrubbed timeline, reversed into place. |
 | Section text | Headline and specs rise 24 px and fade in | 500 ms, `power2.out`, at most 8 items staggered by 80 ms, once per section. |

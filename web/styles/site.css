@@ -830,3 +830,22 @@ input,
 select {
   caret-color: var(--signal);
 }
+
+/* The pinned hub area and the reassemble line follow the light fade, so no dark box is left
+   behind and the line fades out rather than losing contrast (seen by eye in phase 3). */
+.inside.has-3d .still::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--stone-50);
+  opacity: var(--light, 0);
+  pointer-events: none;
+}
+
+.inside.has-3d .still canvas {
+  position: relative;
+}
+
+.inside.has-3d .reassemble {
+  opacity: calc(1 - var(--light, 0));
+}

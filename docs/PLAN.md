@@ -61,7 +61,7 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 
 **Files:** `web/styles/*.css`, `web/main.ts`, `web/form.ts`, `web/scene/hub.ts`, `web/scene/scroll.ts` (built as `web/scene/scene.ts` and `web/scene/start.ts`), `web/assets/stills/`, `scripts/render-stills.ts`, `e2e/layout.spec.ts`, `e2e/form.spec.ts`, `e2e/motion.spec.ts`, `web/scene/hub.test.ts`, `package.json` (fonts), `docs/STATUS.md`, `docs/log/`.
 
-**Departures in 2b (recorded 20 November 2026; departures 1, 2 and 5 approved by Anand Bakshi on 20 November 2026, with SPEC, DESIGN and INTENT updated):** (1) The stills stay as the self-made SVG drawings approved with the design sample, not renders of the model (step 9): they are about 1 kB each, sharp at any size and already approved; `scripts/render-stills.ts` was not built. (2) The hero keeps its still image; the 3D hub lives only in the look-inside section, where it explodes. The hero is the Largest Contentful Paint, so a still there keeps it fast (acceptance test 2), and Three.js loads after the page is readable. (3) The pinned area is CSS `position: sticky`, not a GSAP pin: still one pinned area, with no layout jump. (5) Phones and tablets: the hub is a band at the top (34% of the screen) with the chapters scrolling below it and a label in the band naming the active module, instead of DESIGN.md 8's full-screen canvas with a text panel at the bottom. (4) The frame-rate check is `npm run perf` (Pixel 5 profile, 4x CPU slowdown), kept out of `npm run check` because it measures rather than passes or fails.
+**Departures in 2b (recorded 20 November 2026; departures 1, 2 and 5 approved by Anand Bakshi on 20 November 2026, with SPEC, DESIGN and INTENT updated):** (1) [Reversed at the phase 3 critique: the stills are now rendered from the model by `npm run stills`.] The stills stay as the self-made SVG drawings approved with the design sample, not renders of the model (step 9): they are about 1 kB each, sharp at any size and already approved; `scripts/render-stills.ts` was not built. (2) The hero keeps its still image; the 3D hub lives only in the look-inside section, where it explodes. The hero is the Largest Contentful Paint, so a still there keeps it fast (acceptance test 2), and Three.js loads after the page is readable. (3) The pinned area is CSS `position: sticky`, not a GSAP pin: still one pinned area, with no layout jump. (5) Phones and tablets: the hub is a band at the top (34% of the screen) with the chapters scrolling below it and a label in the band naming the active module, instead of DESIGN.md 8's full-screen canvas with a text panel at the bottom. (4) The frame-rate check is `npm run perf` (Pixel 5 profile, 4x CPU slowdown), kept out of `npm run check` because it measures rather than passes or fails.
 
 **Could break:** the speed target (3D on a mid-range phone); text reflow when fonts load (layout shift); the pinned area on iOS Safari; reading order if the canvas sits in front of the text.
 
@@ -94,17 +94,19 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 
 **Files:** `web/index.html` (head), `web/public/robots.txt`, `web/public/sitemap.xml`, `scripts/lighthouse.ts`, `e2e/seo.spec.ts`, CSS and scene files for fixes, `docs/log/` (Lighthouse and Impeccable results), `docs/STATUS.md`.
 
+**Done differently (recorded 20 November 2026):** Edge runs in Playwright beside Chrome; Firefox and Safari need browser downloads and are checked by hand at release (phase 4). The site URL in the head tags, robots.txt and sitemap.xml is assumed to be `https://strata-hub.netlify.app` until phase 4 decides the host. The 3D now loads after the first scroll has settled, which brought LCP from about 3.0 s to 1.4 to 1.6 s. The person approved the Impeccable critique fixes and design calls N2 and N6; the stills are rendered from the model again (`npm run stills`).
+
 **Could break:** the Content Security Policy can block GSAP or Three.js if they inject styles; fixes from the critique can move away from DESIGN.md (they must not, without the person).
 
 **Success criteria**
 
-- [ ] The page has a unique title and description, Open Graph tags, `robots.txt` and `sitemap.xml`.
-- [ ] Lighthouse mobile: LCP under 2.5 s (acceptance test 2) and accessibility 95 or more (acceptance test 3); results saved in `docs/log/`.
-- [ ] JavaScript and the model together under 600 KB compressed, shown from the build output.
-- [ ] Cumulative Layout Shift under 0.1.
-- [ ] The Content Security Policy is in place and the page shows zero console errors in Chrome, Edge and Firefox, and in Safari where available (SPEC 12).
-- [ ] The Impeccable critique is saved in `docs/log/`, with each finding fixed or listed for the person.
-- [ ] `npm run check` passes.
+- [x] The page has a unique title and description, Open Graph tags, `robots.txt` and `sitemap.xml`.
+- [x] Lighthouse mobile: LCP under 2.5 s (acceptance test 2) and accessibility 95 or more (acceptance test 3); results saved in `docs/log/`.
+- [x] JavaScript and the model together under 600 KB compressed, shown from the build output.
+- [x] Cumulative Layout Shift under 0.1.
+- [x] The Content Security Policy is in place and the page shows zero console errors in Chrome, Edge and Firefox, and in Safari where available (SPEC 12).
+- [x] The Impeccable critique is saved in `docs/log/`, with each finding fixed or listed for the person.
+- [x] `npm run check` passes.
 
 ## Phase 4: Deployment & Documentation
 

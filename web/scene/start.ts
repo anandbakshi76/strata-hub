@@ -114,9 +114,9 @@ export function start(): boolean {
   section.dataset.light = "0";
   ScrollTrigger.create({
     trigger: "#reassemble",
-    start: "bottom bottom",
+    start: "top 25%",
     endTrigger: section,
-    end: "bottom 40%",
+    end: "bottom 60%",
     scrub: true,
     onUpdate: (self) => {
       const light = Math.round(self.progress * 100) / 100;
