@@ -2,6 +2,8 @@
 import { trace } from "./telemetry";
 
 export function render(root: HTMLElement): void {
+  // JavaScript is on: remove the notices that only apply when it is off (SPEC 9).
+  root.ownerDocument.querySelectorAll("[data-no-js]").forEach((el) => el.remove());
   root.dataset.ready = "true";
 }
 

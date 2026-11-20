@@ -12,10 +12,247 @@
     <link rel="stylesheet" href="./styles/base.css" />
   </head>
   <body>
+    <a class="skip-link" href="#app">Skip to content</a>
+
+    <header class="site-header">
+      <a class="logo" href="#top">Strata</a>
+      <nav aria-label="Main">
+        <a href="#inside">Modules</a>
+        <a href="#bundles">Bundles</a>
+        <a href="#faq">FAQ</a>
+        <a class="button" href="#register">Register interest</a>
+      </nav>
+    </header>
+
     <main id="app">
-      <h1>Strata Hub: foundation</h1>
-      <p>The skeleton is in place. Nothing of Strata Hub is built yet.</p>
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">One hub. Every room.</h1>
+        <p class="lede">
+          Strata is a smart home hub built from modules that snap together. Start with light. Add
+          climate, security and energy when you're ready.
+        </p>
+        <a class="button" href="#register">Register interest</a>
+      </section>
+
+      <section id="inside" class="inside" aria-labelledby="inside-title">
+        <h2 id="inside-title">Scroll to look inside</h2>
+
+        <article id="lights" class="chapter" aria-labelledby="lights-title">
+          <h3 id="lights-title">Lights</h3>
+          <p>
+            Turns the lights on as you walk in and dims them as the evening comes. Set a scene once
+            and every room follows it.
+          </p>
+          <dl class="specs">
+            <div>
+              <dt>Lights per hub</dt>
+              <dd>Up to 50</dd>
+            </div>
+            <div>
+              <dt>Works with</dt>
+              <dd>Matter and Zigbee</dd>
+            </div>
+            <div>
+              <dt>Response time</dt>
+              <dd>Under 100 ms</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article id="climate" class="chapter" aria-labelledby="climate-title">
+          <h3 id="climate-title">Climate</h3>
+          <p>
+            Learns when you're home and keeps each room at the temperature you set, within 0.5 °C.
+            No schedules to program.
+          </p>
+          <dl class="specs">
+            <div>
+              <dt>Temperature range</dt>
+              <dd>5 to 35 °C</dd>
+            </div>
+            <div>
+              <dt>Humidity sensing</dt>
+              <dd>0 to 100%</dd>
+            </div>
+            <div>
+              <dt>Power</dt>
+              <dd>Battery-free, from the hub</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article id="security" class="chapter" aria-labelledby="security-title">
+          <h3 id="security-title">Security</h3>
+          <p>
+            Knows when a door opens or the house goes quiet when it shouldn't. Alerts reach your
+            phone in seconds, and recordings stay at home.
+          </p>
+          <dl class="specs">
+            <div>
+              <dt>Door and window sensors</dt>
+              <dd>Up to 30</dd>
+            </div>
+            <div>
+              <dt>Alert time</dt>
+              <dd>Under 3 seconds</dd>
+            </div>
+            <div>
+              <dt>Video storage</dt>
+              <dd>64 GB, on the hub</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article id="energy" class="chapter" aria-labelledby="energy-title">
+          <h3 id="energy-title">Energy</h3>
+          <p>
+            Shows what each circuit uses as it happens, and runs the big appliances when power is
+            cheaper.
+          </p>
+          <dl class="specs">
+            <div>
+              <dt>Circuits measured</dt>
+              <dd>Up to 16</dd>
+            </div>
+            <div>
+              <dt>Reading interval</dt>
+              <dd>Every 2 seconds</dd>
+            </div>
+            <div>
+              <dt>Tariff aware</dt>
+              <dd>Yes</dd>
+            </div>
+          </dl>
+        </article>
+
+        <p id="reassemble" class="reassemble">
+          Start with one module. Add the rest when you're ready.
+        </p>
+      </section>
+
+      <section id="bundles" class="bundles" aria-labelledby="bundles-title">
+        <h2 id="bundles-title">Choose your bundle</h2>
+        <div class="cards">
+          <article class="card" aria-labelledby="b-starter">
+            <h3 id="b-starter">Starter</h3>
+            <p class="price">$199</p>
+            <ul>
+              <li>Hub: included</li>
+              <li>Lights: included</li>
+              <li>Climate: not included</li>
+              <li>Security: not included</li>
+              <li>Energy: not included</li>
+            </ul>
+            <a class="button secondary" href="#register">Register interest</a>
+          </article>
+          <article class="card" aria-labelledby="b-home">
+            <h3 id="b-home">Home</h3>
+            <p class="price">$349</p>
+            <ul>
+              <li>Hub: included</li>
+              <li>Lights: included</li>
+              <li>Climate: included</li>
+              <li>Security: included</li>
+              <li>Energy: not included</li>
+            </ul>
+            <a class="button" href="#register">Register interest</a>
+          </article>
+          <article class="card" aria-labelledby="b-complete">
+            <h3 id="b-complete">Complete</h3>
+            <p class="price">$499</p>
+            <ul>
+              <li>Hub: included</li>
+              <li>Lights: included</li>
+              <li>Climate: included</li>
+              <li>Security: included</li>
+              <li>Energy: included</li>
+            </ul>
+            <a class="button secondary" href="#register">Register interest</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="register" class="register" aria-labelledby="register-title">
+        <h2 id="register-title">Hear when Strata launches</h2>
+        <p>One email at launch. Nothing else.</p>
+        <form novalidate>
+          <!-- Shown until main.ts removes it, so it shows whenever JavaScript is off. -->
+          <p class="notice" data-no-js>Turn on JavaScript to register interest.</p>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="module">Which module interests you most? (optional)</label>
+            <select id="module" name="module">
+              <option>Not sure yet</option>
+              <option>Lights</option>
+              <option>Climate</option>
+              <option>Security</option>
+              <option>Energy</option>
+            </select>
+          </div>
+          <div class="field check">
+            <input id="consent" name="consent" type="checkbox" required />
+            <label for="consent"
+              >Email me about the Strata launch. I can unsubscribe at any time.</label
+            >
+          </div>
+          <!-- type="button" until phase 2a adds the form's behaviour: with JavaScript off it must never submit. -->
+          <button class="button" type="button">Register interest</button>
+          <p class="privacy">
+            We only use your email to tell you about the Strata launch. Nothing is sent in this
+            demo.
+          </p>
+        </form>
+      </section>
+
+      <section id="faq" class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Questions</h2>
+        <details>
+          <summary>Is there a subscription?</summary>
+          <p>No. Everything works without a monthly fee.</p>
+        </details>
+        <details>
+          <summary>What does Strata work with?</summary>
+          <p>
+            Lights and plugs that use Matter or Zigbee, and the four Strata modules. The app makes
+            setup easier, but the hub runs without it.
+          </p>
+        </details>
+        <details>
+          <summary>What happens to my data?</summary>
+          <p>
+            It stays on the hub in your home. Nothing goes to the cloud unless you turn on remote
+            access.
+          </p>
+        </details>
+        <details>
+          <summary>When does it ship?</summary>
+          <p>
+            Strata is a fictional product made for a design pilot, so there is no ship date.
+            Registering shows how the launch page works.
+          </p>
+        </details>
+        <details>
+          <summary>Can I return it?</summary>
+          <p>Yes, within 30 days, in its box, for a full refund.</p>
+        </details>
+        <details>
+          <summary>How is it powered?</summary>
+          <p>
+            The hub plugs into a wall socket. The modules take their power from the hub, so there
+            are no batteries to change.
+          </p>
+        </details>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <p>Strata is a fictional product made for a design pilot.</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
     <script type="module" src="./main.ts"></script>
   </body>
 </html>
