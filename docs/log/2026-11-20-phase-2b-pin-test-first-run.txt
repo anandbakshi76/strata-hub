@@ -1,0 +1,44 @@
+
+Running 2 tests using 1 worker
+
+  x  1 e2e\motion.spec.ts:168:3 › 1280px with reduced motion: the chapter still scrolls with the page, it is not pinned (1.3s)
+  x  2 e2e\motion.spec.ts:168:3 › 1280px with no WebGL: the chapter still scrolls with the page, it is not pinned (1.3s)
+
+
+  1) e2e\motion.spec.ts:168:3 › 1280px with reduced motion: the chapter still scrolls with the page, it is not pinned 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "sticky"
+
+      190 |     await expect(page.locator("#app")).toHaveAttribute("data-ready", "true");
+      191 |     const still = page.locator("#inside .still");
+    > 192 |     expect(await still.evaluate((el) => getComputedStyle(el).position)).not.toBe("sticky");
+          |                                                                             ^
+      193 |     await scrollTo(page, "#climate");
+      194 |     const a = (await still.boundingBox())?.y ?? 0;
+      195 |     await scrollTo(page, "#security");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:192:77
+
+    Error Context: test-results\motion-1280px-with-reduced-ce696-h-the-page-it-is-not-pinned\error-context.md
+
+  2) e2e\motion.spec.ts:168:3 › 1280px with no WebGL: the chapter still scrolls with the page, it is not pinned 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "sticky"
+
+      190 |     await expect(page.locator("#app")).toHaveAttribute("data-ready", "true");
+      191 |     const still = page.locator("#inside .still");
+    > 192 |     expect(await still.evaluate((el) => getComputedStyle(el).position)).not.toBe("sticky");
+          |                                                                             ^
+      193 |     await scrollTo(page, "#climate");
+      194 |     const a = (await still.boundingBox())?.y ?? 0;
+      195 |     await scrollTo(page, "#security");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\motion.spec.ts:192:77
+
+    Error Context: test-results\motion-1280px-with-no-WebG-6f2b2-h-the-page-it-is-not-pinned\error-context.md
+
+  2 failed
+    e2e\motion.spec.ts:168:3 › 1280px with reduced motion: the chapter still scrolls with the page, it is not pinned 
+    e2e\motion.spec.ts:168:3 › 1280px with no WebGL: the chapter still scrolls with the page, it is not pinned 

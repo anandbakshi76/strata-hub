@@ -162,3 +162,38 @@ test.describe("without WebGL", () => {
     await expect(page.locator("#inside .still img")).toBeVisible();
   });
 });
+
+// Verifier finding: with reduced motion or no WebGL, nothing is pinned at any width (SPEC 9, DESIGN 7).
+for (const mode of ["reduced motion", "no WebGL"] as const) {
+  test(`1280px with ${mode}: the chapter still scrolls with the page, it is not pinned`, async ({
+    page,
+  }) => {
+    if (mode === "reduced motion") await page.emulateMedia({ reducedMotion: "reduce" });
+    else
+      await page.addInitScript(() => {
+        const original = HTMLCanvasElement.prototype.getContext;
+        HTMLCanvasElement.prototype.getContext = function (
+          this: HTMLCanvasElement,
+          type: string,
+          ...rest: unknown[]
+        ) {
+          if (type.startsWith("webgl")) return null;
+          return (original as (...a: unknown[]) => RenderingContext | null).call(
+            this,
+            type,
+            ...rest,
+          );
+        } as typeof HTMLCanvasElement.prototype.getContext;
+      });
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/");
+    await expect(page.locator("#app")).toHaveAttribute("data-ready", "true");
+    const still = page.locator("#inside .still");
+    expect(await still.evaluate((el) => getComputedStyle(el).position)).not.toBe("sticky");
+    await scrollTo(page, "#climate");
+    const a = (await still.boundingBox())?.y ?? 0;
+    await scrollTo(page, "#security");
+    const b = (await still.boundingBox())?.y ?? 0;
+    expect(Math.abs(a - b)).toBeGreaterThan(100);
+  });
+}
