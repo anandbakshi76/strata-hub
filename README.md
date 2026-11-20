@@ -12,4 +12,8 @@ A scroll-driven launch page for Strata, a fictional modular smart home hub whose
 - `npm run lighthouse` runs Lighthouse on the built site (mobile, three runs) and saves the result in `docs/log/`.
 - `npm run stills` renders the fallback stills from the 3D model.
 
-See `docs/STATUS.md` for what is built so far, and `docs/PLAN.md` for the phases.
+## Deploy
+
+Netlify builds and serves the site from `netlify.toml`. Step by step, with the custom domain and rollback: `docs/DEPLOY.md`. What changed: `CHANGELOG.md`.
+
+See `docs/STATUS.md` for what is built, and `docs/PLAN.md` for the phases.
