@@ -287,10 +287,10 @@ h3 {
     align-items: start;
   }
 
+  /* The still scrolls with the page; only the 3D hub is pinned (.has-3d below), so with reduced
+     motion or no WebGL nothing is pinned (SPEC 9, DESIGN 7). */
   .inside-grid .still {
     order: 0;
-    position: sticky;
-    top: 112px;
     max-width: 420px;
   }
 }

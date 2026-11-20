@@ -190,9 +190,12 @@ for (const mode of ["reduced motion", "no WebGL"] as const) {
     await expect(page.locator("#app")).toHaveAttribute("data-ready", "true");
     const still = page.locator("#inside .still");
     expect(await still.evaluate((el) => getComputedStyle(el).position)).not.toBe("sticky");
+    // Smooth scrolling is on without reduced motion, so wait for each scroll to finish.
     await scrollTo(page, "#climate");
+    await page.waitForTimeout(1000);
     const a = (await still.boundingBox())?.y ?? 0;
     await scrollTo(page, "#security");
+    await page.waitForTimeout(1000);
     const b = (await still.boundingBox())?.y ?? 0;
     expect(Math.abs(a - b)).toBeGreaterThan(100);
   });
