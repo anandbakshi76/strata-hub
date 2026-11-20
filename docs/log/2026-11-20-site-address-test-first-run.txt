@@ -1,0 +1,49 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chrome] › e2e\seo.spec.ts:9:1 › the page has a title, a description, sharing tags and a canonical link (1.6s)
+  x  2 [chrome] › e2e\seo.spec.ts:24:1 › robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page (100ms)
+
+
+  1) [chrome] › e2e\seo.spec.ts:9:1 › the page has a title, a description, sharing tags and a canonical link 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "https://strata-hub-yj5y.netlify.app/og-image.png"
+    Received: "https://strata-hub.netlify.app/og-image.png"
+
+      17 |   expect(await meta('meta[property="og:type"]')).toBe("website");
+      18 |   // The deployed Netlify address (20 November 2026).
+    > 19 |   expect(await meta('meta[property="og:image"]')).toBe(`${SITE}/og-image.png`);
+         |                                                   ^
+      20 |   expect(await meta('meta[name="twitter:card"]')).toBe("summary_large_image");
+      21 |   expect(await page.locator('link[rel="canonical"]').getAttribute("href")).toBe(`${SITE}/`);
+      22 | });
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\seo.spec.ts:19:51
+
+    Error Context: test-results\seo-the-page-has-a-title-a-7d927-g-tags-and-a-canonical-link-chrome\error-context.md
+
+  2) [chrome] › e2e\seo.spec.ts:24:1 › robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Sitemap: https://strata-hub-yj5y.netlify.app/sitemap.xml"
+    Received string:    "User-agent: *
+    Allow: /·
+    Sitemap: https://strata-hub.netlify.app/sitemap.xml
+    "
+
+      29 |   const r = await robots.text();
+      30 |   expect(r).toContain("User-agent: *");
+    > 31 |   expect(r).toContain(`Sitemap: ${SITE}/sitemap.xml`);
+         |             ^
+      32 |   const sitemap = await request.get("/sitemap.xml");
+      33 |   expect(sitemap.ok()).toBe(true);
+      34 |   const s = await sitemap.text();
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\seo.spec.ts:31:13
+
+    Error Context: test-results\seo-robots-txt-allows-craw-0a8c0--sitemap-xml-lists-the-page-chrome\error-context.md
+
+  2 failed
+    [chrome] › e2e\seo.spec.ts:9:1 › the page has a title, a description, sharing tags and a canonical link 
+    [chrome] › e2e\seo.spec.ts:24:1 › robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page 
