@@ -24,6 +24,9 @@ export function render(root: HTMLElement): void {
       requestAnimationFrame(() => doc.getElementById("email")?.focus({ preventScroll: true }));
     }),
   );
+  setUpHeader(doc);
+  const h1 = doc.querySelector("h1");
+  h1?.addEventListener("animationend", () => (h1.dataset.risen = "true"));
   root.dataset.ready = "true";
   startMotion(doc);
 }
@@ -52,8 +55,17 @@ function startMotion(doc: Document): void {
   );
   // Start watching on the first scroll after the page has loaded, so the 3D never competes with the
   // first paint; until it is ready the stills show.
-  const watch = () =>
-    view.addEventListener("scroll", () => observer.observe(section), { once: true, passive: true });
+  // Start the 3D only once scrolling has settled: starting it mid-scroll would interrupt a smooth
+  // scroll from a nav link (found in phase 3).
+  let settle = 0;
+  const onScroll = () => {
+    view.clearTimeout(settle);
+    settle = view.setTimeout(() => {
+      view.removeEventListener("scroll", onScroll);
+      observer.observe(section);
+    }, 200);
+  };
+  const watch = () => view.addEventListener("scroll", onScroll, { passive: true });
   if (doc.readyState === "complete") watch();
   else view.addEventListener("load", watch, { once: true });
 }
@@ -61,4 +73,27 @@ function startMotion(doc: Document): void {
 if (typeof document !== "undefined") {
   const root = document.getElementById("app");
   if (root) void trace("page.render", () => render(root));
+}
+
+// The header turns opaque while the dark section is under it (critique P2, DESIGN 5).
+function setUpHeader(doc: Document): void {
+  const view = doc.defaultView;
+  const header = doc.querySelector<HTMLElement>(".site-header");
+  const dark = doc.getElementById("inside");
+  if (!view || !header || !dark) return;
+  let frame = 0;
+  const update = () => {
+    frame = 0;
+    const r = dark.getBoundingClientRect();
+    const line = header.offsetHeight;
+    header.classList.toggle("over-dark", r.top <= line && r.bottom >= line);
+  };
+  view.addEventListener(
+    "scroll",
+    () => {
+      if (!frame) frame = view.requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+  update();
 }

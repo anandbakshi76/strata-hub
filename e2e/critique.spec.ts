@@ -107,3 +107,19 @@ test.describe("N6 with reduced motion", () => {
     expect(transforms.every((t) => t === "none")).toBe(true);
   });
 });
+
+test("a nav link scrolls all the way to its section, even as the 3D starts (found in phase 3)", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/");
+  await page.locator('.nav-links a[href="#bundles"]').click();
+  await expect
+    .poll(
+      () => page.locator("#bundles").evaluate((el) => Math.round(el.getBoundingClientRect().top)),
+      {
+        timeout: 6000,
+      },
+    )
+    .toBeLessThan(120);
+});
