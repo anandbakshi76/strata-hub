@@ -715,3 +715,30 @@ h3 {
     display: none;
   }
 }
+
+/* Touch targets (WCAG 2.2): the logo is at least 44 px tall and footer links at least 24 px. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+/* Phones and tablets: the chapter still takes the same height as the 3D band, so nothing moves
+   when the 3D arrives after the first scroll (layout shift, PLAN phase 3). */
+@media (max-width: 1023px) {
+  .inside-grid .still {
+    height: 34svh;
+    max-width: none;
+  }
+
+  .inside-grid .still img {
+    height: 100%;
+    object-fit: contain;
+  }
+}

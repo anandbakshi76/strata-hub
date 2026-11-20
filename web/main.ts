@@ -38,7 +38,24 @@ function startMotion(doc: Document): void {
   const gl = probe.getContext("webgl2") ?? probe.getContext("webgl");
   if (!gl) return;
   gl.getExtension("WEBGL_lose_context")?.loseContext();
-  import("./scene/start").then((m) => m.start()).catch(() => undefined);
+  // Load Three.js only when the look-inside section comes near, so it never competes with the
+  // first paint (acceptance test 2). Visitors who never scroll that far never download it.
+  const section = doc.getElementById("inside");
+  if (!section || typeof view.IntersectionObserver !== "function") return;
+  const observer = new view.IntersectionObserver(
+    (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      observer.disconnect();
+      import("./scene/start").then((m) => m.start()).catch(() => undefined);
+    },
+    { rootMargin: "200px 0px" },
+  );
+  // Start watching on the first scroll after the page has loaded, so the 3D never competes with the
+  // first paint; until it is ready the stills show.
+  const watch = () =>
+    view.addEventListener("scroll", () => observer.observe(section), { once: true, passive: true });
+  if (doc.readyState === "complete") watch();
+  else view.addEventListener("load", watch, { once: true });
 }
 
 if (typeof document !== "undefined") {

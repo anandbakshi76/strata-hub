@@ -18,7 +18,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check": "npm run format:check && npm run lint && npm run types && npm run test && npm run test:e2e",
-    "perf": "playwright test --config playwright.perf.config.ts"
+    "perf": "playwright test --config playwright.perf.config.ts",
+    "lighthouse": "node scripts/lighthouse.ts"
   },
   "dependencies": {
     "@fontsource/archivo": "^5.3.0",
@@ -36,9 +37,11 @@
     "@types/jsdom": "^30.0.0",
     "@types/node": "^26.6.6",
     "@types/three": "^0.187.0",
+    "chrome-launcher": "^1.2.3",
     "eslint": "^10.15.0",
     "globals": "^17.14.0",
     "jsdom": "^31.0.1",
+    "lighthouse": "^13.6.0",
     "prettier": "^3.10.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.73.0",
