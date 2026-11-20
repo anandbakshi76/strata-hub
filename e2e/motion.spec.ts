@@ -69,18 +69,58 @@ test.describe("with WebGL and motion", () => {
     expect(a && b && Math.abs(a.y - b.y)).toBeLessThan(2);
   });
 
-  test("on wide screens a callout names the active module; on phones it is hidden (gap 21)", async ({
-    page,
-  }) => {
+  test("on wide screens a callout beside the hub names the active module", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
     await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
     await scrollTo(page, "#climate");
     await expect(page.locator("#inside .callout")).toBeVisible();
     await expect(page.locator("#inside .callout")).toContainText("Climate");
-    await page.setViewportSize({ width: 375, height: 800 });
-    await expect(page.locator("#inside .callout")).toBeHidden();
   });
+
+  test("the hub has snapped back together while it is still fully on screen (review S1)", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/");
+    await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+    await scrollTo(page, "#energy");
+    await page.waitForTimeout(1200);
+    let explode = 1;
+    for (let i = 0; i < 80 && explode >= 0.05; i++) {
+      await page.mouse.wheel(0, 40);
+      await page.waitForTimeout(120);
+      explode = Number(await inside(page).getAttribute("data-explode"));
+    }
+    expect(explode).toBeLessThan(0.05);
+    const box = await page.locator("#inside canvas").boundingBox();
+    expect(box !== null && box.y >= 0 && box.y + box.height <= 900).toBe(true);
+  });
+});
+
+test.describe("on phones and tablets (review B1, S3)", () => {
+  for (const width of [375, 768]) {
+    test(`${width}px: the highlighted module is the chapter being read, and a label in the band names it`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: width === 375 ? 800 : 1024 });
+      await page.goto("/");
+      await expect(page.locator("#inside canvas")).toBeVisible({ timeout: 15_000 });
+      for (const id of ["lights", "climate", "security", "energy"]) {
+        // Put the chapter's story just below the band at the top, where it is read.
+        await page.locator(`#${id}`).evaluate((el) => {
+          const band = document.querySelector("#inside .still") as HTMLElement;
+          const below = band.getBoundingClientRect().bottom + 16;
+          const story = el.querySelector("p") as HTMLElement;
+          window.scrollBy(0, story.getBoundingClientRect().top - below);
+        });
+        await expect(inside(page)).toHaveAttribute("data-active", id);
+        const name = id[0]?.toUpperCase() + id.slice(1);
+        await expect(page.locator("#inside .callout")).toBeVisible();
+        await expect(page.locator("#inside .callout")).toContainText(name);
+      }
+    });
+  }
 });
 
 test.describe("with reduced motion", () => {
