@@ -93,7 +93,7 @@ h3 {
   border: 0;
   border-radius: var(--radius-pill);
   background: var(--signal);
-  color: #fff;
+  color: var(--white);
   font: 500 16px/1 var(--font-body);
   text-decoration: none;
   cursor: pointer;
@@ -125,8 +125,7 @@ h3 {
   justify-content: space-between;
   gap: var(--space-4);
   min-height: 64px;
-  background: rgb(250 250 249 / 92%);
-  backdrop-filter: blur(8px);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--stone-300);
 }
 
@@ -300,7 +299,7 @@ h3 {
 
 .chapter {
   padding-block: var(--space-7);
-  border-top: 1px solid rgb(231 229 228 / 16%);
+  border-top: 1px solid var(--hairline-dark);
 }
 
 @media (min-width: 1024px) {
@@ -315,7 +314,7 @@ h3 {
 .chapter h3 {
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 800;
-  color: #fff;
+  color: var(--stone-200);
 }
 
 .chapter p {
@@ -333,11 +332,11 @@ h3 {
   justify-content: space-between;
   gap: var(--space-4);
   padding: var(--space-3) 0;
-  border-top: 1px solid rgb(231 229 228 / 16%);
+  border-top: 1px solid var(--hairline-dark);
 }
 
 .specs div:last-child {
-  border-bottom: 1px solid rgb(231 229 228 / 16%);
+  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .specs dt {
@@ -359,7 +358,7 @@ h3 {
   font: 700 clamp(22px, 3vw, 32px) / 1.25 var(--font-display);
   letter-spacing: -0.02em;
   color: var(--stone-200);
-  border-top: 1px solid rgb(231 229 228 / 16%);
+  border-top: 1px solid var(--hairline-dark);
 }
 
 /* Bundles */
@@ -438,7 +437,7 @@ h3 {
   width: 20px;
   text-align: center;
   font-family: var(--font-mono);
-  content: "\2713";
+  content: "\2713" / "";
 }
 
 .card li.no {
@@ -446,7 +445,7 @@ h3 {
 }
 
 .card li.no::before {
-  content: "\2013";
+  content: "\2013" / "";
 }
 
 /* Register interest */
@@ -475,7 +474,7 @@ h3 {
   padding: 0 14px;
   border: 1px solid var(--stone-600);
   border-radius: var(--radius-field);
-  background: #fff;
+  background: var(--white);
   color: var(--stone-900);
   font: 400 17px var(--font-body);
 }
@@ -508,9 +507,27 @@ h3 {
 }
 
 .error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 6px 0 0;
   color: var(--error);
   font-size: 15px;
+}
+
+.error[hidden] {
+  display: none;
+}
+
+.error svg {
+  flex: none;
+}
+
+.fields {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
 }
 
 .notice {
@@ -565,15 +582,13 @@ h3 {
   content: "+";
   font: 500 22px var(--font-mono);
   color: var(--signal);
-  transition: transform 0.18s;
 }
 
 .faq details[open] summary::after {
-  transform: rotate(45deg);
+  content: "\2212";
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faq summary::after,
   .button {
     transition: none;
   }

@@ -18,6 +18,12 @@ export function render(root: HTMLElement): void {
   const menu = doc.querySelector<HTMLButtonElement>(".menu-button");
   const links = doc.getElementById("nav-links");
   if (menu && links) setUpMenu(menu, links);
+  // SPEC 5: the Register interest buttons jump to the form and put the focus in the email field.
+  doc.querySelectorAll<HTMLAnchorElement>('a[href="#register"]').forEach((link) =>
+    link.addEventListener("click", () => {
+      requestAnimationFrame(() => doc.getElementById("email")?.focus({ preventScroll: true }));
+    }),
+  );
   root.dataset.ready = "true";
 }
 

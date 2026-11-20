@@ -207,30 +207,65 @@
         <form novalidate>
           <!-- Shown until main.ts removes it, so it shows whenever JavaScript is off. -->
           <p class="notice" data-no-js>Turn on JavaScript to register interest.</p>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-            <p class="error" id="email-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="module">Which module interests you most? (optional)</label>
-            <select id="module" name="module">
-              <option>Not sure yet</option>
-              <option>Lights</option>
-              <option>Climate</option>
-              <option>Security</option>
-              <option>Energy</option>
-            </select>
-          </div>
-          <div class="field check">
-            <input id="consent" name="consent" type="checkbox" required />
-            <label for="consent"
-              >Email me about the Strata launch. I can unsubscribe at any time.</label
-            >
-            <p class="error" id="consent-error" hidden></p>
-          </div>
-          <!-- type="button" on purpose: with JavaScript off it can never submit; web/form.ts handles the click. -->
-          <button class="button" type="button">Register interest</button>
+          <!-- Disabled until web/form.ts runs: with JavaScript off nothing can be typed or sent, and Enter can't submit (rule 4). -->
+          <fieldset class="fields" disabled>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+              <p class="error" id="email-error" hidden>
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                ><span></span>
+              </p>
+            </div>
+            <div class="field">
+              <label for="module">Which module interests you most? (optional)</label>
+              <select id="module" name="module">
+                <option>Not sure yet</option>
+                <option>Lights</option>
+                <option>Climate</option>
+                <option>Security</option>
+                <option>Energy</option>
+              </select>
+            </div>
+            <div class="field check">
+              <input id="consent" name="consent" type="checkbox" required />
+              <label for="consent"
+                >Email me about the Strata launch. I can unsubscribe at any time.</label
+              >
+              <p class="error" id="consent-error" hidden>
+                <svg
+                  aria-hidden="true"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                ><span></span>
+              </p>
+            </div>
+            <!-- type="button" on purpose: with JavaScript off it can never submit; web/form.ts handles the click. -->
+            <button class="button" type="button">Register interest</button>
+          </fieldset>
           <p class="form-status" role="status"></p>
           <p class="privacy">
             We only use your email to tell you about the Strata launch. Nothing is sent in this

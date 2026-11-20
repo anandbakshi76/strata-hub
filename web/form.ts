@@ -8,12 +8,14 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function setError(field: HTMLInputElement, message: HTMLElement, text: string | null): void {
   if (text) {
-    message.textContent = text;
+    const span = message.querySelector("span");
+    if (span) span.textContent = text;
     message.hidden = false;
     field.setAttribute("aria-invalid", "true");
     field.setAttribute("aria-describedby", message.id);
   } else {
-    message.textContent = "";
+    const span = message.querySelector("span");
+    if (span) span.textContent = "";
     message.hidden = true;
     field.removeAttribute("aria-invalid");
     field.removeAttribute("aria-describedby");
@@ -28,6 +30,7 @@ export function setUpForm(form: HTMLFormElement): void {
   const status = form.querySelector<HTMLElement>("[role=status]");
   const button = form.querySelector<HTMLButtonElement>("button");
   if (!email || !consent || !emailError || !consentError || !status || !button) return;
+  form.querySelector("fieldset")?.removeAttribute("disabled"); // JavaScript is on: the form can be used
 
   const check = () => {
     status.textContent = "";
