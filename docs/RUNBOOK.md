@@ -5,7 +5,7 @@ How Strata Hub is run once it's live. Keep it current: the review checks it when
 ## Deploy
 
 - Command: merge to `main` on GitHub; Netlify builds and deploys it by itself (`netlify.toml`). Step by step in `docs/DEPLOY.md`.
-- Where it runs: Netlify, as a static site from `dist/` (address assumed `https://strata-hub.netlify.app` until the first deploy confirms it).
+- Where it runs: Netlify, as a static site from `dist/`, at https://strata-hub-yj5y.netlify.app (first deployed 20 November 2026).
 
 ## Roll back
 

@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { gzipSync } from "node:zlib";
 
 // PLAN phase 3: SEO, the size budget, layout shift and the Content Security Policy.
+const SITE = "https://strata-hub-yj5y.netlify.app";
 
 test("the page has a title, a description, sharing tags and a canonical link", async ({ page }) => {
   await page.goto("/");
@@ -14,9 +15,10 @@ test("the page has a title, a description, sharing tags and a canonical link", a
   expect(await meta('meta[property="og:title"]')).toBeTruthy();
   expect(await meta('meta[property="og:description"]')).toBeTruthy();
   expect(await meta('meta[property="og:type"]')).toBe("website");
-  expect(await meta('meta[property="og:image"]')).toMatch(/^https:\/\/.+\/og-image\.png$/);
+  // The deployed Netlify address (20 November 2026).
+  expect(await meta('meta[property="og:image"]')).toBe(`${SITE}/og-image.png`);
   expect(await meta('meta[name="twitter:card"]')).toBe("summary_large_image");
-  expect(await page.locator('link[rel="canonical"]').getAttribute("href")).toMatch(/^https:\/\//);
+  expect(await page.locator('link[rel="canonical"]').getAttribute("href")).toBe(`${SITE}/`);
 });
 
 test("robots.txt allows crawling and points to the sitemap; sitemap.xml lists the page", async ({
@@ -26,12 +28,12 @@ test("robots.txt allows crawling and points to the sitemap; sitemap.xml lists th
   expect(robots.ok()).toBe(true);
   const r = await robots.text();
   expect(r).toContain("User-agent: *");
-  expect(r).toMatch(/Sitemap: https:\/\/.+\/sitemap\.xml/);
+  expect(r).toContain(`Sitemap: ${SITE}/sitemap.xml`);
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.ok()).toBe(true);
   const s = await sitemap.text();
   expect(s).toContain("<urlset");
-  expect(s).toMatch(/<loc>https:\/\/.+\/<\/loc>/);
+  expect(s).toContain(`<loc>${SITE}/</loc>`);
   const image = await request.get("/og-image.png");
   expect(image.ok()).toBe(true);
   expect(image.headers()["content-type"]).toContain("image/png");
