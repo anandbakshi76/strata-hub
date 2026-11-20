@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://strata-hub.netlify.app/sitemap.xml
+Sitemap: https://strata-hub-yj5y.netlify.app/sitemap.xml
