@@ -104,7 +104,7 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 - [x] Lighthouse mobile: LCP under 2.5 s (acceptance test 2) and accessibility 95 or more (acceptance test 3); results saved in `docs/log/`.
 - [x] JavaScript and the model together under 600 KB compressed, shown from the build output.
 - [x] Cumulative Layout Shift under 0.1.
-- [x] The Content Security Policy is in place and the page shows zero console errors in Chrome, Edge and Firefox, and in Safari where available (SPEC 12).
+- [ ] The Content Security Policy is in place and the page shows zero console errors in Chrome, Edge and Firefox, and in Safari where available (SPEC 12). (Chrome and Edge done and tested. Firefox deferred to phase 4, agreed by Anand Bakshi on 20 November 2026: it isn't installed on this machine. Safari not available.)
 - [x] The Impeccable critique is saved in `docs/log/`, with each finding fixed or listed for the person.
 - [x] `npm run check` passes.
 

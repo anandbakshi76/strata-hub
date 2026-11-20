@@ -79,6 +79,7 @@ export const content = {
     },
   ] satisfies Module[],
   reassemble: "Start with one module. Add the rest when you're ready.",
+  bundlesNote: "Every bundle includes the hub.",
   bundles: [
     { name: "Starter", price: "$199", includes: ["lights"] },
     { name: "Home", price: "$349", includes: ["lights", "climate", "security"] },

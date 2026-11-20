@@ -849,3 +849,8 @@ select {
 .inside.has-3d .reassemble {
   opacity: calc(1 - var(--light, 0));
 }
+
+.bundles-note {
+  margin: 0;
+  color: var(--stone-600);
+}
