@@ -25,6 +25,18 @@ export function render(root: HTMLElement): void {
     }),
   );
   root.dataset.ready = "true";
+  startMotion(doc);
+}
+
+// The 3D hub and its scroll motion load only when motion is allowed and WebGL works (SPEC 9).
+// Otherwise, or if loading fails, the stills stay and the page reads the same (rule 2).
+function startMotion(doc: Document): void {
+  const view = doc.defaultView;
+  if (!view || typeof view.matchMedia !== "function") return;
+  if (view.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const probe = doc.createElement("canvas");
+  if (!(probe.getContext("webgl2") ?? probe.getContext("webgl"))) return;
+  import("./scene/start").then((m) => m.start()).catch(() => undefined);
 }
 
 if (typeof document !== "undefined") {
