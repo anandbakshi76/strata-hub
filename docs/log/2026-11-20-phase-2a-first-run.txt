@@ -1,0 +1,283 @@
+
+Running 14 tests using 1 worker
+
+  x   1 e2e\form.spec.ts:16:1 › an empty email shows the SPEC 9 message next to the field and moves the focus to it (6.5s)
+  x   2 e2e\form.spec.ts:27:1 › an invalid email shows the same message (6.9s)
+  x   3 e2e\form.spec.ts:34:1 › an unticked consent box shows its message next to the box (6.7s)
+  ok  4 e2e\form.spec.ts:43:1 › fixing the email clears its error (1.9s)
+  x   5 e2e\form.spec.ts:55:1 › a valid submission shows the confirmation and sends nothing (rule 4) (6.5s)
+  x   6 e2e\layout.spec.ts:11:3 › 375px: no sideways scroll, own-domain requests only, design fonts and colours (1.5s)
+  x   7 e2e\layout.spec.ts:11:3 › 768px: no sideways scroll, own-domain requests only, design fonts and colours (1.4s)
+  x   8 e2e\layout.spec.ts:11:3 › 1280px: no sideways scroll, own-domain requests only, design fonts and colours (1.0s)
+  x   9 e2e\layout.spec.ts:43:1 › phone: the section links fold into a Menu button that opens and closes (6.3s)
+  x  10 e2e\layout.spec.ts:57:1 › desktop: links shown, no Menu button; bundles three across; chapter still beside the text (1.5s)
+  ok 11 e2e\layout.spec.ts:73:1 › phone: bundles stack in one column (1.3s)
+  x  12 e2e\layout.spec.ts:82:1 › the stills show with text alternatives and fixed sizes (SPEC 9, no layout shift) (6.2s)
+  x  13 e2e\layout.spec.ts:95:1 › the Home bundle is the recommended one, with the only primary button among the cards (6.2s)
+  ok 14 e2e\layout.spec.ts:105:1 › the keyboard reaches every link, button, field and FAQ question in order, with a visible focus ring (1.4s)
+
+
+  1) e2e\form.spec.ts:16:1 › an empty email shows the SPEC 9 message next to the field and moves the focus to it 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByLabel('Email', { exact: true })
+    Expected: "true"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByLabel('Email', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Email', { exact: true })
+        14 × locator resolved to <input id="email" required="" name="email" type="email" autocomplete="email"/>
+           - unexpected value "null"
+
+
+      19 |   await submit(page);
+      20 |   const email = page.getByLabel("Email", { exact: true });
+    > 21 |   await expect(email).toHaveAttribute("aria-invalid", "true");
+         |                       ^
+      22 |   await expect(email).toBeFocused();
+      23 |   const describedBy = await email.getAttribute("aria-describedby");
+      24 |   await expect(page.locator(`#${describedBy}`)).toHaveText(EMAIL_ERROR);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\form.spec.ts:21:23
+
+    Error Context: test-results\form-an-empty-email-shows--740ae-d-and-moves-the-focus-to-it\error-context.md
+
+  2) e2e\form.spec.ts:27:1 › an invalid email shows the same message ───────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Enter an email address, like name@example.com')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Enter an email address, like name@example.com') with timeout 5000ms
+      - waiting for getByText('Enter an email address, like name@example.com')
+
+
+      29 |   await page.getByLabel(/Email me about/).check();
+      30 |   await submit(page);
+    > 31 |   await expect(page.getByText(EMAIL_ERROR)).toBeVisible();
+         |                                             ^
+      32 | });
+      33 |
+      34 | test("an unticked consent box shows its message next to the box", async ({ page }) => {
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\form.spec.ts:31:45
+
+    Error Context: test-results\form-an-invalid-email-shows-the-same-message\error-context.md
+
+  3) e2e\form.spec.ts:34:1 › an unticked consent box shows its message next to the box ─────────────
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByLabel(/Email me about/)
+    Expected: "true"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByLabel(/Email me about/) with timeout 5000ms
+      - waiting for getByLabel(/Email me about/)
+        14 × locator resolved to <input required="" id="consent" name="consent" type="checkbox"/>
+           - unexpected value "null"
+
+
+      36 |   await submit(page);
+      37 |   const consent = page.getByLabel(/Email me about/);
+    > 38 |   await expect(consent).toHaveAttribute("aria-invalid", "true");
+         |                         ^
+      39 |   const describedBy = await consent.getAttribute("aria-describedby");
+      40 |   await expect(page.locator(`#${describedBy}`)).toHaveText(CONSENT_ERROR);
+      41 | });
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\form.spec.ts:38:25
+
+    Error Context: test-results\form-an-unticked-consent-b-39fb2-its-message-next-to-the-box\error-context.md
+
+  4) e2e\form.spec.ts:55:1 › a valid submission shows the confirmation and sends nothing (rule 4) ──
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByRole('status')
+    Expected: "Thanks. We'll email you when Strata launches."
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+
+
+      60 |   await page.getByLabel(/Email me about/).check();
+      61 |   await submit(page);
+    > 62 |   await expect(page.getByRole("status")).toHaveText(THANKS);
+         |                                          ^
+      63 |   expect(requests).toEqual([]);
+      64 |   expect(page.url()).not.toContain("sam");
+      65 | });
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\form.spec.ts:62:42
+
+    Error Context: test-results\form-a-valid-submission-sh-dec46-n-and-sends-nothing-rule-4-\error-context.md
+
+  5) e2e\layout.spec.ts:11:3 › 375px: no sideways scroll, own-domain requests only, design fonts and colours 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Archivo"
+    Received string:    "\"DM Sans\", system-ui, sans-serif"
+
+      27 |     expect(foreign).toEqual([]); // rule 6: no third-party request
+      28 |
+    > 29 |     expect(await style(page, "h1", "font-family")).toContain("Archivo");
+         |                                                    ^
+      30 |     expect(await style(page, "h1", "font-weight")).toBe("800");
+      31 |     expect(await style(page, "body", "font-family")).toContain("DM Sans");
+      32 |     expect(await style(page, ".specs dd", "font-family")).toContain("IBM Plex Mono");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:29:52
+
+    Error Context: test-results\layout-375px-no-sideways-s-5ef91-ly-design-fonts-and-colours\error-context.md
+
+  6) e2e\layout.spec.ts:11:3 › 768px: no sideways scroll, own-domain requests only, design fonts and colours 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Archivo"
+    Received string:    "\"DM Sans\", system-ui, sans-serif"
+
+      27 |     expect(foreign).toEqual([]); // rule 6: no third-party request
+      28 |
+    > 29 |     expect(await style(page, "h1", "font-family")).toContain("Archivo");
+         |                                                    ^
+      30 |     expect(await style(page, "h1", "font-weight")).toBe("800");
+      31 |     expect(await style(page, "body", "font-family")).toContain("DM Sans");
+      32 |     expect(await style(page, ".specs dd", "font-family")).toContain("IBM Plex Mono");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:29:52
+
+    Error Context: test-results\layout-768px-no-sideways-s-98e51-ly-design-fonts-and-colours\error-context.md
+
+  7) e2e\layout.spec.ts:11:3 › 1280px: no sideways scroll, own-domain requests only, design fonts and colours 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Archivo"
+    Received string:    "\"DM Sans\", system-ui, sans-serif"
+
+      27 |     expect(foreign).toEqual([]); // rule 6: no third-party request
+      28 |
+    > 29 |     expect(await style(page, "h1", "font-family")).toContain("Archivo");
+         |                                                    ^
+      30 |     expect(await style(page, "h1", "font-weight")).toBe("800");
+      31 |     expect(await style(page, "body", "font-family")).toContain("DM Sans");
+      32 |     expect(await style(page, ".specs dd", "font-family")).toContain("IBM Plex Mono");
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:29:52
+
+    Error Context: test-results\layout-1280px-no-sideways--49b17-ly-design-fonts-and-colours\error-context.md
+
+  8) e2e\layout.spec.ts:43:1 › phone: the section links fold into a Menu button that opens and closes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Menu' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Menu' }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Menu' })
+
+
+      45 |   await page.goto("/");
+      46 |   const menu = page.getByRole("button", { name: "Menu" });
+    > 47 |   await expect(menu).toBeVisible();
+         |                      ^
+      48 |   await expect(menu).toHaveAttribute("aria-expanded", "false");
+      49 |   await expect(page.locator(".site-header nav a", { hasText: "Bundles" })).toBeHidden();
+      50 |   await menu.click();
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:47:22
+
+    Error Context: test-results\layout-phone-the-section-l-fffc0-utton-that-opens-and-closes\error-context.md
+
+  9) e2e\layout.spec.ts:57:1 › desktop: links shown, no Menu button; bundles three across; chapter still beside the text 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 3
+
+      65 |     .locator("#bundles .card")
+      66 |     .evaluateAll((cards) => cards.map((c) => Math.round(c.getBoundingClientRect().top)));
+    > 67 |   expect(new Set(tops).size).toBe(1);
+         |                              ^
+      68 |   const still = await page.locator("#inside .still").boundingBox();
+      69 |   const text = await page.locator("#lights").boundingBox();
+      70 |   expect(still !== null && text !== null && still.x > text.x).toBe(true);
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:67:30
+
+    Error Context: test-results\layout-desktop-links-shown-10dbf-apter-still-beside-the-text\error-context.md
+
+  10) e2e\layout.spec.ts:82:1 › the stills show with text alternatives and fixed sizes (SPEC 9, no layout shift) 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.hero .still img')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.hero .still img') with timeout 5000ms
+      - waiting for locator('.hero .still img')
+
+
+      86 |   for (const sel of [".hero .still img", "#inside .still img"]) {
+      87 |     const img = page.locator(sel);
+    > 88 |     await expect(img).toBeVisible();
+         |                       ^
+      89 |     expect((await img.getAttribute("alt"))?.length ?? 0).toBeGreaterThan(20);
+      90 |     expect(await img.getAttribute("width")).toBeTruthy();
+      91 |     expect(await img.getAttribute("height")).toBeTruthy();
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:88:23
+
+    Error Context: test-results\layout-the-stills-show-wit-7b388-zes-SPEC-9-no-layout-shift-\error-context.md
+
+  11) e2e\layout.spec.ts:95:1 › the Home bundle is the recommended one, with the only primary button among the cards 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#bundles .card').filter({ hasText: 'Home' }).getByText('Recommended')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#bundles .card').filter({ hasText: 'Home' }).getByText('Recommended') with timeout 5000ms
+      - waiting for locator('#bundles .card').filter({ hasText: 'Home' }).getByText('Recommended')
+
+
+       98 |   await page.goto("/");
+       99 |   const home = page.locator("#bundles .card", { hasText: "Home" });
+    > 100 |   await expect(home.getByText("Recommended")).toBeVisible();
+          |                                               ^
+      101 |   await expect(page.locator("#bundles .card .button:not(.secondary)")).toHaveCount(1);
+      102 |   await expect(home.locator(".button:not(.secondary)")).toHaveCount(1);
+      103 | });
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\layout.spec.ts:100:47
+
+    Error Context: test-results\layout-the-Home-bundle-is--6867c-mary-button-among-the-cards\error-context.md
+
+  11 failed
+    e2e\form.spec.ts:16:1 › an empty email shows the SPEC 9 message next to the field and moves the focus to it 
+    e2e\form.spec.ts:27:1 › an invalid email shows the same message ────────────────────────────────
+    e2e\form.spec.ts:34:1 › an unticked consent box shows its message next to the box ──────────────
+    e2e\form.spec.ts:55:1 › a valid submission shows the confirmation and sends nothing (rule 4) ───
+    e2e\layout.spec.ts:11:3 › 375px: no sideways scroll, own-domain requests only, design fonts and colours 
+    e2e\layout.spec.ts:11:3 › 768px: no sideways scroll, own-domain requests only, design fonts and colours 
+    e2e\layout.spec.ts:11:3 › 1280px: no sideways scroll, own-domain requests only, design fonts and colours 
+    e2e\layout.spec.ts:43:1 › phone: the section links fold into a Menu button that opens and closes 
+    e2e\layout.spec.ts:57:1 › desktop: links shown, no Menu button; bundles three across; chapter still beside the text 
+    e2e\layout.spec.ts:82:1 › the stills show with text alternatives and fixed sizes (SPEC 9, no layout shift) 
+    e2e\layout.spec.ts:95:1 › the Home bundle is the recommended one, with the only primary button among the cards 
+  3 passed (1.4m)
