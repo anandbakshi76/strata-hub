@@ -65,11 +65,11 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 
 **Success criteria**
 
-- [ ] [2a] At 375, 768 and 1280 px: no sideways scroll, each section laid out as DESIGN.md 8 (checked in the browser, with screenshots in the report).
-- [ ] [2a] The keyboard reaches every link, button, field and FAQ question in order, with a visible focus ring.
-- [ ] [2a] An empty or invalid email and an unticked consent box show the SPEC 9 messages next to the fields; a valid submission shows the confirmation; Playwright sees no network request on submit (rule 4).
-- [ ] [2a] axe finds no WCAG 2.2 AA failures; every text colour pair is at least 4.5:1 (DESIGN.md 2).
-- [ ] [2a] No request to any domain other than the site's own (rule 6), checked by Playwright.
+- [x] [2a] At 375, 768 and 1280 px: no sideways scroll, each section laid out as DESIGN.md 8 (checked in the browser, with screenshots in the report).
+- [x] [2a] The keyboard reaches every link, button, field and FAQ question in order, with a visible focus ring.
+- [x] [2a] An empty or invalid email and an unticked consent box show the SPEC 9 messages next to the fields; a valid submission shows the confirmation; Playwright sees no network request on submit (rule 4).
+- [x] [2a] axe finds no WCAG 2.2 AA failures; every text colour pair is at least 4.5:1 (DESIGN.md 2).
+- [x] [2a] No request to any domain other than the site's own (rule 6), checked by Playwright.
 - [ ] [2b] The model has a base and four modules, under 20,000 triangles, built from shapes only (rule 1).
 - [ ] [2b] Scrolling explodes the hub, highlights each module in its chapter and reassembles it; scrolling up reverses it (SPEC 4.2), checked in the browser.
 - [ ] [2b] With reduced motion, or with WebGL turned off, the stills show, nothing is pinned and all content reads (SPEC 9).

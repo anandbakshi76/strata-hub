@@ -132,3 +132,23 @@ test("the keyboard reaches every link, button, field and FAQ question in order, 
   }
   expect(seen).toEqual(expected);
 });
+
+test("every section shares one left edge with the header and footer", async ({ page }) => {
+  for (const width of [375, 768, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    const lefts = await page.evaluate(() =>
+      [
+        ".logo",
+        "h1",
+        "#inside .chapter h3",
+        "#bundles h2",
+        ".cards",
+        ".register form",
+        ".faq details",
+        ".site-footer p",
+      ].map((s) => Math.round(document.querySelector(s)?.getBoundingClientRect().left ?? -1)),
+    );
+    expect(new Set(lefts).size, `${width}px: ${lefts.join(", ")}`).toBe(1);
+  }
+});
