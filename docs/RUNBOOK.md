@@ -4,17 +4,17 @@ How Strata Hub is run once it's live. Keep it current: the review checks it when
 
 ## Deploy
 
-- Command: (to be filled in when deployment is built)
-- Where it runs: (to be filled in)
+- Command: merge to `main` on GitHub; Netlify builds and deploys it by itself (`netlify.toml`). Step by step in `docs/DEPLOY.md`.
+- Where it runs: Netlify, as a static site from `dist/` (address assumed `https://strata-hub.netlify.app` until the first deploy confirms it).
 
 ## Roll back
 
-- Command: (to be filled in: deploy the previous tag)
+- Command: in Netlify, **Deploys**, the last good deploy, **Publish deploy**; or the **Revert** button on the merged pull request in GitHub (on the command line, `git revert -m 1 <merge commit>`). Details in `docs/DEPLOY.md`, Roll back; how to rehearse it in Rehearse a rollback.
 - Last rehearsed on: ____ by ____
 
 ## Health
 
-- Health check: (to be filled in)
+- Health check: the address answers 200 with the `content-security-policy` header (`curl.exe -I <address>` on Windows, `curl -I <address>` on a Mac), the page shows "One hub. Every room.", and the browser console shows no errors.
 - Logs and traces: traces are in `logs/traces/` as JSON lines. Find a request by the trace ID shown in errors.
 - Dashboards and alerts: as set in `docs/OBSERVABILITY.md`, Budgets and alerts.
 - Who to call: Anand Bakshi

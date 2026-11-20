@@ -121,15 +121,17 @@ Phases 2a and 2b take the parts marked [2a] and [2b] below. Branches: `phase-2a-
 
 **Files:** `docs/DEPLOY.md`, `docs/RUNBOOK.md`, `README.md`, `CHANGELOG.md`, `docs/STATUS.md`, `e2e/build.spec.ts` or `scripts/check-build.ts`, `docs/log/`.
 
+**Done (20 November 2026):** `netlify.toml` (build, publish, Node 26, security headers including `frame-ancestors`), `docs/DEPLOY.md` (Netlify, custom domain, rollback, after-deploy checks including Firefox and Safari), RUNBOOK.md filled, CHANGELOG.md, and the final report `docs/log/2026-11-20-final-report.md`. The build and release documents are checked by `web/release.test.ts`; `dist/` served by `vite preview` is what every Playwright test runs against.
+
 **Could break:** nothing in the page; the guide could go stale if the host changes its screens.
 
 **Success criteria**
 
-- [ ] `npm run build` finishes with no errors and no warnings.
-- [ ] `dist/` holds the page, assets, `robots.txt` and `sitemap.xml`, and works when served from a plain static server (checked in the browser with `npm run preview`).
-- [ ] DEPLOY.md and RUNBOOK.md give deploy, custom domain and rollback steps the person can follow without help.
-- [ ] Every box in this plan is ticked or explained, and the final report gives each acceptance test as met, not met or measured later.
-- [ ] `npm run check` passes.
+- [x] `npm run build` finishes with no errors and no warnings.
+- [x] `dist/` holds the page, assets, `robots.txt` and `sitemap.xml`, and works when served from a plain static server (checked in the browser with `npm run preview`).
+- [x] DEPLOY.md and RUNBOOK.md give deploy, custom domain and rollback steps the person can follow without help.
+- [x] Every box in this plan is ticked or explained, and the final report gives each acceptance test as met, not met or measured later.
+- [x] `npm run check` passes.
 
 ## Parallel work
 

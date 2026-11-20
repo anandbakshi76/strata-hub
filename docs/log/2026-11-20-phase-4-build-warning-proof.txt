@@ -1,0 +1,5 @@
+Proof for review B1 (20 November 2026): a build with chunkSizeWarningLimit 10 kB.
+exit status: 0
+warning in stdout: false  (the old test read only this)
+warning in stdout + stderr: true  (the fixed test reads both)
+stderr line: (!) Some chunks are larger than 10 kB after minification. Consider:
