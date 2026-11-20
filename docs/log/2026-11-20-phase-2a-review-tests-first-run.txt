@@ -1,0 +1,167 @@
+
+Running 9 tests using 1 worker
+
+  x  1 e2e\review-2a.spec.ts:8:3 › B1: with JavaScript off the form can never send › pressing Enter in the email field sends nothing and keeps the URL (rule 4) (2.3s)
+  x  2 e2e\review-2a.spec.ts:24:1 › S1: the header's Register interest button puts the focus in the email field (SPEC 5) (6.8s)
+  x  3 e2e\review-2a.spec.ts:33:1 › S2: the header has no glass effect (DESIGN.md 2) (1.6s)
+  x  4 e2e\review-2a.spec.ts:41:1 › S3: chapter names use --stone-200 on dark (DESIGN.md 2) (1.6s)
+  x  5 e2e\review-2a.spec.ts:47:1 › S4: each form error shows an icon with the text (DESIGN.md 5) (6.2s)
+  x  6 e2e\review-2a.spec.ts:57:1 › N1: an open FAQ shows a minus, not a rotated plus (DESIGN.md 5) (1.9s)
+  x  7 e2e\review-2a.spec.ts:68:1 › N6: the tick and dash in the bundle lists are hidden from screen readers (1.5s)
+  ok 8 e2e\review-2a.spec.ts:81:3 › N4: reduced motion › the stills show when reduced motion is on (SPEC 9) (1.5s)
+  ok 9 e2e\review-2a.spec.ts:88:1 › N4: axe finds no AA failures in the form's error state and the open phone menu (3.1s)
+
+
+  1) e2e\review-2a.spec.ts:8:3 › B1: with JavaScript off the form can never send › pressing Enter in the email field sends nothing and keeps the URL (rule 4) 
+
+    Error: expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "sam"
+    Received string:        "http://localhost:4173/?email=sam%40example.com&module=Not+sure+yet"
+
+      17 |     await page.keyboard.press("Enter");
+      18 |     await page.waitForTimeout(500);
+    > 19 |     expect(page.url()).not.toContain("sam");
+         |                            ^
+      20 |     expect(requests.filter((u) => u.includes("email="))).toEqual([]);
+      21 |   });
+      22 | });
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:19:28
+
+    Error Context: test-results\review-2a-B1-with-JavaScri-824d1-g-and-keeps-the-URL-rule-4-\error-context.md
+
+  2) e2e\review-2a.spec.ts:24:1 › S1: the header's Register interest button puts the focus in the email field (SPEC 5) 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#email')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" locator('#email') with timeout 5000ms
+      - waiting for locator('#email')
+        14 × locator resolved to <input id="email" required="" name="email" type="email" autocomplete="email"/>
+           - unexpected value "inactive"
+
+
+      28 |   await page.goto("/");
+      29 |   await page.locator(".site-header a.button").click();
+    > 30 |   await expect(page.locator("#email")).toBeFocused();
+         |                                        ^
+      31 | });
+      32 |
+      33 | test("S2: the header has no glass effect (DESIGN.md 2)", async ({ page }) => {
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:30:40
+
+    Error Context: test-results\review-2a-S1-the-header-s--56638--in-the-email-field-SPEC-5-\error-context.md
+
+  3) e2e\review-2a.spec.ts:33:1 › S2: the header has no glass effect (DESIGN.md 2) ─────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |     .locator(".site-header")
+      37 |     .evaluate((el) => getComputedStyle(el).backdropFilter);
+    > 38 |   expect(blur === "none" || blur === "").toBe(true);
+         |                                          ^
+      39 | });
+      40 |
+      41 | test("S3: chapter names use --stone-200 on dark (DESIGN.md 2)", async ({ page }) => {
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:38:42
+
+    Error Context: test-results\review-2a-S2-the-header-has-no-glass-effect-DESIGN-md-2-\error-context.md
+
+  4) e2e\review-2a.spec.ts:41:1 › S3: chapter names use --stone-200 on dark (DESIGN.md 2) ──────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "rgb(231, 229, 228)"
+    Received: "rgb(255, 255, 255)"
+
+      42 |   await page.goto("/");
+      43 |   const colour = await page.locator("#lights h3").evaluate((el) => getComputedStyle(el).color);
+    > 44 |   expect(colour).toBe("rgb(231, 229, 228)");
+         |                  ^
+      45 | });
+      46 |
+      47 | test("S4: each form error shows an icon with the text (DESIGN.md 5)", async ({ page }) => {
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:44:18
+
+    Error Context: test-results\review-2a-S3-chapter-names-397a9-ne-200-on-dark-DESIGN-md-2-\error-context.md
+
+  5) e2e\review-2a.spec.ts:47:1 › S4: each form error shows an icon with the text (DESIGN.md 5) ────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#email-error svg')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#email-error svg') with timeout 5000ms
+      - waiting for locator('#email-error svg')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      50 |   for (const id of ["#email-error", "#consent-error"]) {
+      51 |     const icon = page.locator(`${id} svg`);
+    > 52 |     await expect(icon).toHaveCount(1);
+         |                        ^
+      53 |     await expect(icon).toHaveAttribute("aria-hidden", "true");
+      54 |   }
+      55 | });
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:52:24
+
+    Error Context: test-results\review-2a-S4-each-form-err-2f5e5--with-the-text-DESIGN-md-5-\error-context.md
+
+  6) e2e\review-2a.spec.ts:57:1 › N1: an open FAQ shows a minus, not a rotated plus (DESIGN.md 5) ──
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "−"
+    Received string:    "\"+\""
+
+      62 |     .first()
+      63 |     .evaluate((el) => getComputedStyle(el, "::after"));
+    > 64 |   expect(after.content).toContain("−");
+         |                         ^
+      65 |   expect(after.transform === "none" || after.transform === "").toBe(true);
+      66 | });
+      67 |
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:64:25
+
+    Error Context: test-results\review-2a-N1-an-open-FAQ-s-8028d-a-rotated-plus-DESIGN-md-5-\error-context.md
+
+  7) e2e\review-2a.spec.ts:68:1 › N6: the tick and dash in the bundle lists are hidden from screen readers 
+
+    Error: expect(received).toMatch(expected)
+
+    Expected pattern: /\/\s*""$/
+    Received string:  "\"✓\""
+
+      74 |     .first()
+      75 |     .evaluate((el) => getComputedStyle(el, "::before").content);
+    > 76 |   expect(content).toMatch(/\/\s*""$/);
+         |                   ^
+      77 | });
+      78 |
+      79 | test.describe("N4: reduced motion", () => {
+        at D:\LLM_Projects_Learning\projects\01-showcase-site\strata-hub\e2e\review-2a.spec.ts:76:19
+
+    Error Context: test-results\review-2a-N6-the-tick-and--30587--hidden-from-screen-readers\error-context.md
+
+  7 failed
+    e2e\review-2a.spec.ts:8:3 › B1: with JavaScript off the form can never send › pressing Enter in the email field sends nothing and keeps the URL (rule 4) 
+    e2e\review-2a.spec.ts:24:1 › S1: the header's Register interest button puts the focus in the email field (SPEC 5) 
+    e2e\review-2a.spec.ts:33:1 › S2: the header has no glass effect (DESIGN.md 2) ──────────────────
+    e2e\review-2a.spec.ts:41:1 › S3: chapter names use --stone-200 on dark (DESIGN.md 2) ───────────
+    e2e\review-2a.spec.ts:47:1 › S4: each form error shows an icon with the text (DESIGN.md 5) ─────
+    e2e\review-2a.spec.ts:57:1 › N1: an open FAQ shows a minus, not a rotated plus (DESIGN.md 5) ───
+    e2e\review-2a.spec.ts:68:1 › N6: the tick and dash in the bundle lists are hidden from screen readers 
+  2 passed (48.6s)
